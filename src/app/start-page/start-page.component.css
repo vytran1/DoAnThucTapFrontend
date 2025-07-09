@@ -1,0 +1,96 @@
+/* Reset body để xóa hở trên/dưới */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+/* Tổng thể layout */
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 300px; /* ⬅️ tăng từ 250px lên 300px */
+  background-color: #2f855a;
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.personal-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: white; /* placeholder nếu chưa có ảnh */
+  margin-bottom: 10px;
+}
+
+.sidebar-name {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  word-break: break-word; /* xuống dòng nếu tên dài */
+}
+
+.sidebar-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 16px;
+}
+
+.sidebar-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.sidebar-menu a:hover {
+  color: #d4fcd4;
+}
+
+/* Main content (bên phải) */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 👈 Bắt buộc để flex hoạt động đúng */
+  box-sizing: border-box;
+  background-color: #f7f7f7;
+}
+
+/* Nội dung chính phía trên footer */
+.content-body {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+/* Footer */
+.footer {
+  background-color: #e2e8f0;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #ccc;
+}

@@ -1,0 +1,113 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.login-page {
+  height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    #d4fcd4,
+    #b7eeb7
+  ); /* xanh lá cây nhạt */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  display: flex;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  max-width: 1000px;
+  width: 95%;
+  min-height: 550px; /* 👈 thêm dòng này để tăng chiều cao */
+}
+
+.login-left {
+  flex: 1;
+  background-color: #ecfcef; /* nền nhẹ bên trái */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-left img {
+  max-width: 100%;
+  height: auto;
+}
+
+.login-right {
+  flex: 1;
+  padding: 40px;
+}
+
+.login-right h2 {
+  margin-bottom: 24px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #5cb85c; /* xanh lá cây đậm hơn */
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #4cae4c;
+}
+
+.error-input-message {
+  margin-top: 5px;
+  background-color: #ffe6e6; /* nền đỏ nhạt */
+  border-left: 4px solid #ff4d4d; /* viền trái đỏ đậm */
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #cc0000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.error-input-message p {
+  margin: 0;
+}
+
+/* Optional: fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

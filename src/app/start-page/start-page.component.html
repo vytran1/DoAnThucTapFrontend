@@ -1,0 +1,45 @@
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <img src="../../assets/default.png" alt="Avatar" class="personal-image" />
+      <p class="sidebar-name">Trần Nguyễn Vỹ</p>
+    </div>
+
+    <nav class="sidebar-menu">
+      <ul>
+        <li>
+          <a routerLink="/inventory/personal-info">Personal Information</a>
+        </li>
+        <li>
+          <a routerLink="/inventory/inventory-management"
+            >Inventory Management</a
+          >
+        </li>
+        <li>
+          <a (click)="onLogoutClick()">LOGOUT</a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <div class="main-content">
+    <div class="content-body">
+      <router-outlet></router-outlet>
+    </div>
+
+    <footer class="footer">
+      <p>&copy; 2025 Your Company. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <app-warning-modal
+    [visible]="is_open_modal"
+    [message]="message"
+    [title]="title"
+    (confirm)="onConfirm()"
+    (cancel)="onCancel()"
+  >
+  </app-warning-modal>
+</div>

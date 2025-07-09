@@ -1,0 +1,58 @@
+<div class="login-page">
+  <div class="login-container">
+    <div class="login-left">
+      <img
+        src="../../assets/what-is-inventory-management-techniques-practices-benefits-.png"
+        alt="Login Image"
+      />
+    </div>
+    <div class="login-right">
+      <h2>LOGIN</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            formControlName="username"
+          />
+          @if(loginForm.get('username')?.invalid &&
+          loginForm.get('username')?.touched){
+          <div class="error-input-message">
+            @if(loginForm.get('username')?.errors?.['required']){
+            <p>Username is required</p>
+            } @if(loginForm.get('username')?.errors?.['email']){
+            <p>Username should have valid email format</p>
+            }
+          </div>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            formControlName="password"
+          />
+          @if(loginForm.get('password')?.invalid &&
+          loginForm.get('password')?.touched){
+          <div class="error-input-message">
+            @if(loginForm.get('password')?.errors?.['required']){
+            <p>Password is required</p>
+            } @if(loginForm.get('password')?.errors?.['minlength']){
+            <p>Password must have at least 5 characters</p>
+            }
+          </div>
+          }
+        </div>
+        <button [disabled]="isProcessing" type="submit">Submit</button>
+      </form>
+      @if(failMessage){
+      <div class="error-input-message">{{ failMessage }}</div>
+      }
+    </div>
+  </div>
+</div>
