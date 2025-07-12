@@ -1,0 +1,59 @@
+/* Container bao bọc nút để căn phải */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+/* Style cho nút Save */
+.save-button {
+  padding: 8px 20px;
+  background-color: #4caf50; /* xanh lá nhẹ */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.save-button:disabled {
+  background-color: #a5d6a7; /* xanh nhạt khi disabled */
+  cursor: not-allowed;
+}
+
+.save-button:hover:not(:disabled) {
+  background-color: #388e3c; /* đậm hơn khi hover */
+}
+
+/* Tiêu đề section như "Product Details", "Product Attributes" */
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2e7d32; /* xanh lá đậm dễ nhìn */
+  margin: 24px 0 12px;
+  border-left: 4px solid #4caf50; /* viền trái nổi bật */
+  padding-left: 12px;
+}
+
+/* Tuỳ chọn nếu muốn khoảng cách giữa các khối rõ hơn */
+.section-block {
+  margin-bottom: 24px;
+}
+
+/* Style cho nút Cancel */
+.cancel-button {
+  padding: 8px 20px;
+  background-color: #e0e0e0; /* xám nhạt */
+  color: #333; /* chữ đậm dễ đọc */
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-right: 12px; /* tạo khoảng cách với nút Save */
+}
+
+.cancel-button:hover {
+  background-color: #bdbdbd; /* xám đậm hơn khi hover */
+}

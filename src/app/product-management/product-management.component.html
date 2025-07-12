@@ -1,2 +1,78 @@
-<p>product-management works!</p>
-<button (click)="redirectToCreateForm()">CREATE NEW PRODUCT</button>
+<div class="product-management-container">
+  <mat-card class="toolbar-card">
+    <div class="toolbar">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Search product name or SKU</mat-label>
+        <input matInput placeholder="e.g. Legion5, LG5_2022" />
+      </mat-form-field>
+
+      <div class="toolbar-actions">
+        <button mat-stroked-button color="primary">Filter</button>
+        <button mat-flat-button color="accent" (click)="redirectToCreateForm()">
+          + Create New Product
+        </button>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="table-card">
+    <table mat-table [dataSource]="productList" class="mat-elevation-z2">
+      <ng-container matColumnDef="image">
+        <th mat-header-cell *matHeaderCellDef>IMAGE</th>
+        <td mat-cell *matCellDef="let element">
+          <img
+            [src]="element.image"
+            alt="Product image"
+            width="40"
+            height="40"
+          />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>PRODUCT NAME</th>
+        <td mat-cell *matCellDef="let element">
+          <a
+            [routerLink]="['/inventory/product-information', element.id]"
+            class="product-link"
+          >
+            {{ element.name }}
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sku">
+        <th mat-header-cell *matHeaderCellDef>SKU</th>
+        <td mat-cell *matCellDef="let element">{{ element.sku }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="brand">
+        <th mat-header-cell *matHeaderCellDef>BRAND</th>
+        <td mat-cell *matCellDef="let element">{{ element.brand }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef>CATEGORY</th>
+        <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>ACTION</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button color="primary">
+            <mat-icon>settings</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <app-page-num
+      [currentPage]="pageNum"
+      [totalItems]="totalItems"
+      [pageSize]="pageSize"
+      (pageChange)="onPageChange($event)"
+    ></app-page-num>
+  </mat-card>
+</div>

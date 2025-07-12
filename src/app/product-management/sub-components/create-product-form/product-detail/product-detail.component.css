@@ -9,7 +9,7 @@ form {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 
   width: 100%; /* 👈 GIỚI HẠN chiều rộng form */
-  max-width: 100%; /* 👈 Giữ responsive nếu màn hình nhỏ */
+  max-width: 1300px; /* 👈 Giữ responsive nếu màn hình nhỏ */
   margin-left: 2rem; /* 👈 Lệch trái một chút */
 }
 .form-row {

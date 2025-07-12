@@ -8,6 +8,7 @@ import { MessageModalComponent } from '../../../shared-component/message-modal/m
 import { ProductInfoAggregateModel } from '../../../model/product/product-info-aggregate.model';
 import { ProductService } from '../../../services/product.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-product-form',
@@ -32,7 +33,7 @@ export class CreateProductFormComponent {
   message = '';
   isProcessing = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   @ViewChild(ProductDetailComponent)
   productDetailComponent!: ProductDetailComponent;
@@ -93,5 +94,9 @@ export class CreateProductFormComponent {
 
   onCloseModal() {
     this.isOpenModalWarning = false;
+  }
+
+  onCancelClick() {
+    this.router.navigateByUrl('/inventory/product-management');
   }
 }

@@ -1,0 +1,45 @@
+.product-management-container {
+  padding: 20px;
+}
+
+.toolbar-card {
+  margin-bottom: 20px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.search-field {
+  flex: 1;
+  min-width: 250px;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.table-card {
+  padding: 16px;
+}
+
+.footer-text {
+  margin-top: 12px;
+  font-size: 14px;
+  color: #555;
+}
+
+.product-link {
+  text-decoration: none;
+  color: #1976d2;
+  font-weight: 500;
+}
+
+.product-link:hover {
+  text-decoration: underline;
+}

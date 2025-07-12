@@ -1,11 +1,11 @@
-<h2>Product Details</h2>
+<h2 class="section-title">Product Details</h2>
 <div class="product-detail">
   <app-product-detail
     (productInfoChanged)="onProductInfoChanged($event)"
   ></app-product-detail>
 </div>
 
-<h2>Product Attributes</h2>
+<h2 class="section-title">Product Attributes</h2>
 <div class="product-attributes">
   <app-product-attributes
     [product_name]="product_name"
@@ -19,7 +19,12 @@
     [variants]="generatedVariants"
   ></app-product-variant-table>
 </div>
-<button (click)="onSaveClick()" [disabled]="isProcessing">Save Product</button>
+<div class="button-container">
+  <button class="cancel-button" (click)="onCancelClick()">Cancel</button>
+  <button class="save-button" (click)="onSaveClick()" [disabled]="isProcessing">
+    Save Product
+  </button>
+</div>
 
 @if(isOpenModalWarning){
 <app-message-modal

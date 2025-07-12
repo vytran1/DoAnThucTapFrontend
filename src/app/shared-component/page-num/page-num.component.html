@@ -1,0 +1,38 @@
+<div class="pagination-container">
+  <!-- Dòng hiển thị tổng -->
+  <span class="pagination-summary">
+    Display {{ startIndex }}–{{ endIndex }} out of {{ totalItems }} result
+  </span>
+
+  <!-- Điều khiển phân trang -->
+  <div class="pagination-controls">
+    <button
+      mat-button
+      (click)="goToPage(currentPage - 1)"
+      [disabled]="currentPage === 1"
+    >
+      <mat-icon>chevron_left</mat-icon> Prev
+    </button>
+
+    @for (page of pages; track $index) {
+
+    <ng-container>
+      <button
+        mat-button
+        [color]="page === currentPage ? 'primary' : undefined"
+        (click)="goToPage(page)"
+      >
+        {{ page }}
+      </button>
+    </ng-container>
+    }
+
+    <button
+      mat-button
+      (click)="goToPage(currentPage + 1)"
+      [disabled]="currentPage === totalPages"
+    >
+      Next <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</div>

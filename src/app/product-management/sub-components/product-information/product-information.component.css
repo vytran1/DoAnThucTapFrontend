@@ -1,0 +1,15 @@
+.tab-nav-wrapper {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 12px 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  margin-bottom: 16px;
+}
+
+.tab-content-wrapper {
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  min-height: 300px;
+}
