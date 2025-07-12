@@ -1,0 +1,45 @@
+.variant-table-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f5faff;
+  border: 1px solid #cce4f6;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.variant-table-title {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.variant-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.variant-table thead {
+  background-color: #e3f2fd;
+}
+
+.variant-table th,
+.variant-table td {
+  border: 1px solid #cce4f6;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.variant-table th {
+  font-weight: 600;
+  color: #333;
+}
+
+.variant-table tr:nth-child(even) {
+  background-color: #f9fcff;
+}
+
+.variant-table tr:hover {
+  background-color: #e0f2ff;
+}

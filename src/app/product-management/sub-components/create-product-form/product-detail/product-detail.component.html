@@ -1,0 +1,70 @@
+<form [formGroup]="form">
+  <div class="form-row">
+    <label for="product_name">Product Name:</label>
+    <input type="text" formControlName="product_name" />
+  </div>
+
+  @if (form.get('product_name').invalid && form.get('product_name').touched) {
+  <div class="error-input-message">
+    @if (form.get('product_name').errors?.['required']) {
+    <p>Product Name is required</p>
+    }
+  </div>
+  }
+
+  <div class="form-row">
+    <label for="sku">SKU:</label>
+    <input type="text" formControlName="sku" />
+  </div>
+
+  @if (form.get('sku').invalid && form.get('sku').touched) {
+  <div class="error-input-message">
+    @if(form.get('sku').errors?.['required']){
+    <p>Sku is required</p>
+    } @if(form.get('sku').errors?.['skuCodeExists']){
+    <p>Sku already exist</p>
+    }
+  </div>
+  }
+
+  <div class="form-row">
+    <label>Brand:</label>
+    <mat-form-field appearance="outline" class="mat-select-field">
+      <mat-label>Brand</mat-label>
+      <mat-select
+        formControlName="brand"
+        (openedChange)="onBrandSelectOpened()"
+      >
+        <mat-option [value]="null" disabled>-- Select Brand --</mat-option>
+        @for (item of brandList; track $index;) {
+        <mat-option [value]="item.id">{{ item.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  @if (form.get('brand').invalid && form.get('brand').touched) {
+  <div class="error-input-message">
+    <p>Please Choose A brand</p>
+  </div>
+  }
+
+  <div class="form-row">
+    <label>Category:</label>
+    <mat-form-field appearance="outline" class="mat-select-field">
+      <mat-label>Category</mat-label>
+      <mat-select formControlName="category">
+        <mat-option [value]="null" disabled>-- Select Category --</mat-option>
+        @for (item of categoryList; track $index;) {
+        <mat-option [value]="item.id">{{ item.name }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  @if (form.get('category').invalid && form.get('category').touched) {
+  <div class="error-input-message">
+    <p>Please Choose A category</p>
+  </div>
+  }
+</form>

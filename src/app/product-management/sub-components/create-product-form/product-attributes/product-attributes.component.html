@@ -1,0 +1,52 @@
+<div *ngFor="let attr of attributes.controls; let i = index">
+  <ng-container *ngIf="attr; instanceof: FormGroup">
+    <div [formGroup]="castToFormGroup(attr)">
+      <mat-form-field appearance="outline">
+        <mat-label>Attribute Name</mat-label>
+        <input matInput formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-chip-grid #chipGrid aria-label="Attribute values">
+          <mat-chip-row
+            *ngFor="let val of getControl(attr, 'values').value || []"
+            [removable]="true"
+            (removed)="removeValue(i, val)"
+          >
+            {{ val }}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+
+          <input
+            placeholder="Add value"
+            [matChipInputFor]="chipGrid"
+            [formControl]="getControl(attr, 'newValueInput')"
+            (keydown.enter)="addValue(i); $event.preventDefault()"
+            (keydown.space)="addValue(i); $event.preventDefault()"
+          />
+        </mat-chip-grid>
+      </mat-form-field>
+
+      <button mat-icon-button color="warn" (click)="removeAttribute(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </ng-container>
+</div>
+
+<button mat-raised-button color="primary" (click)="addAttribute()">
+  Add Attribute
+</button>
+<button mat-raised-button (click)="generateVariants()">
+  Generate Variants
+</button>
+
+@if(isOpenModalWarning){
+<app-message-modal
+  [message]="message"
+  [title]="title"
+  (closed)="closeModal()"
+></app-message-modal>
+}

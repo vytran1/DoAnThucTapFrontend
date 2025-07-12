@@ -62,6 +62,22 @@ export class AuthService {
     }
   }
 
+  public getId() {
+    const token = this.getToken();
+
+    if (token) {
+      const payload = this.jwtHelper.decodeToken(token);
+      const sub = payload?.sub;
+
+      if (sub) {
+        const parts = sub.split(',');
+        return parts[0] || null; // 👈 phần tử thứ 3 (index 2)
+      }
+    }
+
+    return null;
+  }
+
   public getInventoryCode() {
     const token = this.getToken();
 

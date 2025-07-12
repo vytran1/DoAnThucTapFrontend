@@ -1,0 +1,36 @@
+.info-tab-wrapper {
+  background: white;
+  margin: 30px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+::ng-deep .mat-tab-label {
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px 24px;
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+::ng-deep .mat-tab-label-active {
+  color: #388e3c;
+  border-bottom: 2px solid #66bb6a;
+}
+
+::ng-deep .mat-ink-bar {
+  background-color: #66bb6a;
+  height: 3px;
+}
+
+::ng-deep .mat-tab-group {
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content {
+  padding: 24px;
+  background: white;
+  border-radius: 8px;
+}

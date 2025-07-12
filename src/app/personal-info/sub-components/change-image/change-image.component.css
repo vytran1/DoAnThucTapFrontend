@@ -1,0 +1,27 @@
+.change-image-container {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 24px;
+  text-align: center;
+  word-break: normal;
+  white-space: normal;
+}
+
+input[type="file"] {
+  margin-bottom: 16px;
+}
+
+.preview img {
+  margin-top: 12px;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.form-title {
+  text-align: center;
+  color: #2e7d32;
+  margin-bottom: 24px;
+}

@@ -1,0 +1,20 @@
+<div class="variant-table-container" *ngIf="variants.length > 0">
+  <h3 class="variant-table-title">Generated Product Variants</h3>
+
+  <table class="variant-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Variant Name</th>
+        <th>SKU</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let variant of variants; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ variant.name }}</td>
+        <td>{{ variant.sku }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,30 @@
+@if(!isLoading){
+
+<div class="general-info-container">
+  <div class="info-card">
+    <h2>Personal Information</h2>
+
+    <div class="info-row">
+      <label>Email:</label>
+      <span>{{ info?.email }}</span>
+    </div>
+
+    <div class="info-row">
+      <label>Full Name:</label>
+      <span>{{ info?.firstName }} {{ info?.lastName }}</span>
+    </div>
+
+    <div class="info-row">
+      <label>Role:</label>
+      <span>{{ role }}</span>
+    </div>
+
+    <div class="info-row">
+      <label>Inventory Code:</label>
+      <span>{{ inventory }}</span>
+    </div>
+  </div>
+</div>
+}@else {
+<app-loading></app-loading>
+}

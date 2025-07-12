@@ -1,0 +1,23 @@
+<div class="change-image-container">
+  <h2 class="form-title">Change Profile Image</h2>
+
+  <!-- Upload ảnh từ máy -->
+  <input type="file" accept="image/*" (change)="onFileSelected($event)" />
+
+  <!-- Hiển thị preview nếu có ảnh -->
+  @if(imagePreview){
+
+  <div class="preview">
+    <img [src]="imagePreview" alt="Preview" />
+  </div>
+  }
+
+  <button
+    mat-raised-button
+    color="accent"
+    (click)="onClick()"
+    [disabled]="!imagePreview"
+  >
+    Update Image
+  </button>
+</div>

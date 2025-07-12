@@ -1,0 +1,30 @@
+<h2>Product Details</h2>
+<div class="product-detail">
+  <app-product-detail
+    (productInfoChanged)="onProductInfoChanged($event)"
+  ></app-product-detail>
+</div>
+
+<h2>Product Attributes</h2>
+<div class="product-attributes">
+  <app-product-attributes
+    [product_name]="product_name"
+    [sku]="skuCode"
+    (variantsGenerated)="onProductVariantGenerated($event)"
+    (attributesEmitted)="onProductAttributesEmitted($event)"
+  ></app-product-attributes>
+</div>
+<div class="product-variant-table">
+  <app-product-variant-table
+    [variants]="generatedVariants"
+  ></app-product-variant-table>
+</div>
+<button (click)="onSaveClick()" [disabled]="isProcessing">Save Product</button>
+
+@if(isOpenModalWarning){
+<app-message-modal
+  [message]="message"
+  [title]="title"
+  (closed)="onCloseModal()"
+></app-message-modal>
+}
