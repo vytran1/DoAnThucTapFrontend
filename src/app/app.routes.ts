@@ -13,6 +13,7 @@ export const routes: Routes = [
     path: 'inventory',
     component: StartPageComponent,
     children: [
+      //VyTran
       {
         path: 'personal-info',
         component: PersonalInfoComponent,
@@ -33,6 +34,7 @@ export const routes: Routes = [
         path: 'product-information/:productId',
         component: ProductInformationComponent,
       },
+      //VyTran
     ],
   },
   { path: '**', redirectTo: '/login', pathMatch: 'full' },

@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           const token = response.body.accessToken;
 
           this.authService.saveToken(token);
-          this.router.navigateByUrl('/inventory');
+          this.router.navigateByUrl('/inventory/personal-info');
         },
         error: (err) => {
           console.log(err);
