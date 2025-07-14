@@ -1,1 +1,74 @@
-<p>product-images works!</p>
+<div class="product-images-wrapper">
+  <!-- Block 1: Main Image -->
+  <div class="main-image-block">
+    <h3>Main Product Image</h3>
+    <mat-card class="main-image-card">
+      @if (mainImage == '' || mainImage == 'product_default.png') {
+      <img
+        [src]="prefixPath + '/' + 'product_default.png'"
+        alt="Main Image"
+        class="main-image"
+      />
+      }@else {
+      <img
+        [src]="prefixPath + '/' + productId + '/' + mainImage"
+        alt="Main Image"
+        class="main-image"
+      />
+      }
+      <button
+        mat-icon-button
+        color="primary"
+        (click)="openModalForChangeMainImage()"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-card>
+  </div>
+
+  <!-- Block 2: Sub Images -->
+  <div class="sub-images-block">
+    <h3>Sub Product Images</h3>
+    <div class="sub-images-list">
+      <mat-card
+        class="sub-image-card"
+        *ngFor="let img of subImages; let i = index"
+      >
+        <img
+          [src]="prefixPath + '/' + productId + '/' + img.name"
+          alt="Sub Image"
+          class="sub-image"
+        />
+        <button
+          mat-icon-button
+          color="warn"
+          class="delete-btn"
+          (click)="openWarningModal(i, img.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card>
+
+      <!-- Add Button -->
+      <mat-card
+        class="sub-image-card add-card"
+        (click)="openModalForAddSubImage()"
+      >
+        <mat-icon class="add-icon">add</mat-icon>
+      </mat-card>
+    </div>
+  </div>
+  @if (isOpenImageModal) {
+  <app-upload-image
+    (closed)="closeModalImage()"
+    [isChangeMainImage]="isChangeMainImage"
+    (imageUploaded)="handleImage($event)"
+  ></app-upload-image>
+  }
+  <app-warning-modal
+    [visible]="isOpenWarningModal"
+    (cancel)="closeWarningModal()"
+    (confirm)="removeSubImage()"
+  >
+  </app-warning-modal>
+</div>

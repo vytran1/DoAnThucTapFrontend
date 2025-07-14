@@ -81,6 +81,56 @@ export class ProductService {
     });
   }
 
+  public getProductDetailsById(id: number): Observable<HttpResponse<any>> {
+    return this.httpClient.get(`${this.host}/api/products/${id}/overview`, {
+      observe: 'response',
+    });
+  }
+
+  public getProductVariantDetailsById(
+    id: number
+  ): Observable<HttpResponse<any>> {
+    return this.httpClient.get(`${this.host}/api/products/${id}/variants`, {
+      observe: 'response',
+    });
+  }
+
+  public getAllImageInformation(id: number): Observable<HttpResponse<any>> {
+    return this.httpClient.get(`${this.host}/api/products/${id}/images`, {
+      observe: 'response',
+    });
+  }
+
+  public changeMainImage(
+    id: number,
+    file: File
+  ): Observable<HttpResponse<any>> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.httpClient.put<any>(
+      `${this.host}/api/products/${id}/change/image`,
+      formData,
+      { observe: 'response' }
+    );
+  }
+
+  public addSubImage(id: number, file: File): Observable<HttpResponse<any>> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.httpClient.post(
+      `${this.host}/api/products/${id}/add/subImage`,
+      formData,
+      { observe: 'response' }
+    );
+  }
+
+  public deleteSubImage(id: number): Observable<HttpResponse<any>> {
+    return this.httpClient.delete(
+      `${this.host}/api/products/delete/subImage/${id}`,
+      { observe: 'response' }
+    );
+  }
+
   updatePageNum(page: number) {
     this.pageNumSubject.next(page);
   }

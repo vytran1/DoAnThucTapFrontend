@@ -20,12 +20,22 @@
       <ng-container matColumnDef="image">
         <th mat-header-cell *matHeaderCellDef>IMAGE</th>
         <td mat-cell *matCellDef="let element">
+          @if(element.image == '' || element.image == 'product_default.png'){
           <img
-            [src]="element.image"
+            [src]="prefixPath + '/' + 'product_default.png'"
             alt="Product image"
             width="40"
             height="40"
           />
+          }@else {
+
+          <img
+            [src]="prefixPath + '/' + element.id + '/' + element.image"
+            alt="Product image"
+            width="40"
+            height="40"
+          />
+          }
         </td>
       </ng-container>
 

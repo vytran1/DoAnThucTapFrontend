@@ -5,6 +5,7 @@ import { ProductVariantsComponent } from '../product-variants/product-variants.c
 import { ProductImagesComponent } from '../product-images/product-images.component';
 import { ProductInventoryComponent } from '../product-inventory/product-inventory.component';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-information',
@@ -15,6 +16,7 @@ import { ActivatedRoute } from '@angular/router';
     ProductVariantsComponent,
     ProductImagesComponent,
     ProductInventoryComponent,
+    CommonModule,
   ],
   templateUrl: './product-information.component.html',
   styleUrl: './product-information.component.css',

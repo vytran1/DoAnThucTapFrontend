@@ -12,6 +12,7 @@ import { ProductService } from '../services/product.service';
 import { PageNumComponent } from '../shared-component/page-num/page-num.component';
 import { OverviewProductComponent } from './sub-components/overview-product/overview-product.component';
 import { ProductVariantsComponent } from './sub-components/product-variants/product-variants.component';
+import { product_images_path } from '../../environment/environement.config';
 
 @Component({
   selector: 'app-product-management',
@@ -32,6 +33,8 @@ import { ProductVariantsComponent } from './sub-components/product-variants/prod
 export class ProductManagementComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   productList: ProductByPageModel[] = [];
+
+  prefixPath = product_images_path;
 
   pageNum = 1;
   pageSize = 2;

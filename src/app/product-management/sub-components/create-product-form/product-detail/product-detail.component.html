@@ -28,6 +28,21 @@
   }
 
   <div class="form-row">
+    <label for="base_price">Base Price:</label>
+    <input type="number" formControlName="base_price" />
+  </div>
+
+  @if (form.get('base_price').invalid && form.get('base_price').touched) {
+  <div class="error-input-message">
+    @if (form.get('base_price').errors?.['required']) {
+    <p>Base Price is required</p>
+    } @if (form.get('base_price').errors?.['min']) {
+    <p>Base Price must be >= 0</p>
+    }
+  </div>
+  }
+
+  <div class="form-row">
     <label>Brand:</label>
     <mat-form-field appearance="outline" class="mat-select-field">
       <mat-label>Brand</mat-label>

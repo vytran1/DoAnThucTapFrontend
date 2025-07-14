@@ -16,15 +16,15 @@
   <ng-container>
     @switch (selectedIndex) { @case(0){
     <div>
-      <app-overview-product></app-overview-product>
+      <app-overview-product [productId]="productId"></app-overview-product>
     </div>
     } @case (1) {
     <div>
-      <app-product-variants></app-product-variants>
+      <app-product-variants [productId]="productId"></app-product-variants>
     </div>
     } @case (2) {
     <div>
-      <app-product-images></app-product-images>
+      <app-product-images [productId]="productId"></app-product-images>
     </div>
     } @case (3) {
     <div>

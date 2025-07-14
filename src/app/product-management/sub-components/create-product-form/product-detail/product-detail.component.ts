@@ -43,6 +43,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   @Output() productInfoChanged = new EventEmitter<{
     name: string;
     sku: string;
+    base_price: number;
   }>();
 
   brandList: BrandDropdownListModel[] = [
@@ -81,6 +82,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
           updateOn: 'blur',
         },
       ],
+      base_price: [
+        0,
+        {
+          validators: [Validators.required, Validators.min(0)],
+          updateOn: 'blur',
+        },
+      ],
       brand: [null, Validators.required],
       category: [null, Validators.required],
     });
@@ -106,6 +114,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         this.productInfoChanged.emit({
           name: this.form.get('product_name')?.value,
           sku: this.form.get('sku')?.value,
+          base_price: this.form.get('base_price')?.value,
         });
       }
     });

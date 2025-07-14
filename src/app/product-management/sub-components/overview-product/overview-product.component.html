@@ -1,1 +1,47 @@
-<p>overview-product works!</p>
+@if(isLoading){
+<app-loading></app-loading>
+}@else {
+
+<div class="product-detail-grid">
+  <!-- Block 1: Product Name & SKU -->
+  <mat-card class="block">
+    <mat-card-title>Product Info</mat-card-title>
+    <mat-card-content>
+      <div class="field">
+        <div class="label">Product Name</div>
+        <div class="value">{{ productOverview.name }}</div>
+      </div>
+      <div class="field">
+        <div class="label">SKU Code</div>
+        <div class="value">{{ productOverview.sku }}</div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Block 2: Brand & Category -->
+  <mat-card class="block">
+    <mat-card-title>Brand & Category</mat-card-title>
+    <mat-card-content>
+      <div class="field">
+        <div class="label">Brand</div>
+        <div class="value">{{ productOverview.brand }}</div>
+      </div>
+      <div class="field">
+        <div class="label">Category</div>
+        <div class="value">{{ productOverview.category }}</div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Block 3: Base Price -->
+  <mat-card class="block">
+    <mat-card-title>Pricing</mat-card-title>
+    <mat-card-content>
+      <div class="field">
+        <div class="label">Base Price</div>
+        <div class="value">{{ productOverview.price }}</div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+}

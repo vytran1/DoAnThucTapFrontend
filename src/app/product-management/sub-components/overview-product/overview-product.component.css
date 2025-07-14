@@ -1,0 +1,37 @@
+.product-detail-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+  background: #f4f5f7;
+
+  .block {
+    flex: 1 1 300px;
+    min-width: 300px;
+    max-width: 48%;
+    background-color: #fff;
+
+    mat-card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      padding-left: 8px;
+    }
+
+    .field {
+      margin-bottom: 12px;
+
+      .label {
+        font-size: 13px;
+        color: #666;
+        font-weight: 500;
+      }
+
+      .value {
+        font-size: 15px;
+        color: #222;
+        font-weight: 500;
+      }
+    }
+  }
+}

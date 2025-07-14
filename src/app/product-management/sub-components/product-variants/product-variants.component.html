@@ -1,1 +1,42 @@
-<p>product-variants works!</p>
+<mat-card>
+  <mat-card-title>Product Variants</mat-card-title>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+    <!-- Name -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> NAME </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{ row.name }}
+        <span *ngIf="row.default" class="default-badge">Default</span>
+      </mat-cell>
+    </ng-container>
+
+    <!-- SKU -->
+    <ng-container matColumnDef="sku">
+      <mat-header-cell *matHeaderCellDef> SKU </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.sku }} </mat-cell>
+    </ng-container>
+
+    <!-- Price -->
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef> BASE PRICE </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{ row.price | currency : "USD" }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Dynamic Attributes -->
+    <ng-container
+      *ngFor="let attr of attributes"
+      [matColumnDef]="attr.name.toLowerCase()"
+    >
+      <mat-header-cell *matHeaderCellDef> {{ attr.name }} </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        {{ row.attributes?.[attr.name.toLowerCase()] || '-' }}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</mat-card>

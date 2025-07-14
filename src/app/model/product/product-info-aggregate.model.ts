@@ -5,6 +5,7 @@ export interface ProductInfoAggregateModel {
   product_name: string;
   brand: number;
   category: number;
+  base_price: number;
   product_attributes: ProductAttributeModel[];
   product_variants: ProductVariantModel[];
 }

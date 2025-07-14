@@ -72,6 +72,7 @@ export class CreateProductFormComponent {
       product_name: detailInformation.product_name,
       brand: detailInformation.brand,
       category: detailInformation.category,
+      base_price: detailInformation.base_price,
       product_attributes: this.attributeList,
       product_variants: this.generatedVariants,
     };
