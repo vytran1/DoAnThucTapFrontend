@@ -5,6 +5,7 @@ import { InventoryManagementComponent } from './inventory-management/inventory-m
 import { ProductManagementComponent } from './product-management/product-management.component';
 import { CreateProductFormComponent } from './product-management/sub-components/create-product-form/create-product-form.component';
 import { ProductInformationComponent } from './product-management/sub-components/product-information/product-information.component';
+import { StockingSearchComponent } from './stocking-search/stocking-search.component';
 export const inventoryRoutes: Routes = [
   {
     path: 'inventory',
@@ -29,6 +30,10 @@ export const inventoryRoutes: Routes = [
       {
         path: 'product-information/:productId',
         component: ProductInformationComponent,
+      },
+      {
+        path: 'stocking-search',
+        component: StockingSearchComponent,
       },
     ],
   },

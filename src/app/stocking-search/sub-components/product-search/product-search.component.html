@@ -1,0 +1,49 @@
+<div class="product-search-container">
+  <!-- Search bar -->
+  <div class="search-bar">
+    <mat-form-field appearance="outline" class="search-input">
+      <mat-label>Enter SKU Code</mat-label>
+      <input matInput [(ngModel)]="skuCode" placeholder="e.g. SKU123" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="onSearch()">
+      Search
+    </button>
+  </div>
+
+  <!-- Result Table -->
+  <div *ngIf="stockResults.length > 0" class="result-table">
+    <table mat-table [dataSource]="stockResults" class="mat-elevation-z2">
+      <!-- Inventory Code Column -->
+      <ng-container matColumnDef="inventoryCode">
+        <th mat-header-cell *matHeaderCellDef>Inventory Code</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.inventory_code }}
+        </td>
+      </ng-container>
+
+      <!-- Quantity Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.quantity }}
+        </td>
+      </ng-container>
+
+      <!-- Header and Row -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        [ngClass]="{ 'danger-row': row.quantity === 0 }"
+      ></tr>
+    </table>
+  </div>
+</div>
+@if(isOpenMessageModal){
+<app-message-modal
+  [message]="message"
+  [title]="title"
+  (closed)="closeModal()"
+></app-message-modal>
+}
