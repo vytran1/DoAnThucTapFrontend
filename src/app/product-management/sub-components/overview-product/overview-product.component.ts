@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ProductService } from '../../../services/product.service';
 import { ProductOverviewModel } from '../../../model/product/product-overview.model';
 import { LoadingComponent } from '../../../shared-component/loading/loading.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-overview-product',
   standalone: true,
@@ -21,7 +22,7 @@ export class OverviewProductComponent implements OnInit, OnDestroy {
 
   isLoading = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -33,6 +34,14 @@ export class OverviewProductComponent implements OnInit, OnDestroy {
         error: (err) => {
           console.log(err);
           this.isLoading = false;
+          this.router.navigateByUrl('/error', {
+            state: {
+              title: 'Error',
+              message: 'Product Not Found',
+              backLabel: 'Back To Homepage',
+              backLink: '/login',
+            },
+          });
         },
         complete: () => {
           this.isLoading = false;

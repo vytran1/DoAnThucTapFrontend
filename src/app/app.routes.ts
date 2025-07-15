@@ -7,9 +7,11 @@ import { ProductManagementComponent } from './product-management/product-managem
 import { CreateProductFormComponent } from './product-management/sub-components/create-product-form/create-product-form.component';
 import { ProductInformationComponent } from './product-management/sub-components/product-information/product-information.component';
 import { inventoryRoutes } from './vytran.routes';
+import { ErrorPageWrapperComponent } from './shared-component/error-page-wrapper/error-page-wrapper.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   ...inventoryRoutes,
+  { path: 'error', component: ErrorPageWrapperComponent },
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
 ];

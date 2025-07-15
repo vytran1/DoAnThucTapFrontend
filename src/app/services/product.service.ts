@@ -95,6 +95,14 @@ export class ProductService {
     });
   }
 
+  public getProductVariantDetailsWithInventoryInformation(
+    id: number
+  ): Observable<HttpResponse<any>> {
+    return this.httpClient.get(`${this.host}/api/products/${id}/inventory`, {
+      observe: 'response',
+    });
+  }
+
   public getAllImageInformation(id: number): Observable<HttpResponse<any>> {
     return this.httpClient.get(`${this.host}/api/products/${id}/images`, {
       observe: 'response',

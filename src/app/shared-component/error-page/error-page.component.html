@@ -1,0 +1,8 @@
+<div class="error-container">
+  <img [src]="gifUrl" alt="Error Animation" class="error-gif" />
+  <h2>{{ title || "Something went wrong!" }}</h2>
+  <p>{{ message || "An unexpected error occurred. Please try again." }}</p>
+  <button mat-raised-button color="primary" (click)="navigateBack()">
+    {{ backLabel || "Go Back" }}
+  </button>
+</div>

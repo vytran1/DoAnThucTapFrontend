@@ -1,0 +1,26 @@
+.inventory-card {
+  padding: 20px;
+  margin: 20px;
+  border-radius: 12px;
+}
+
+mat-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+mat-table {
+  width: 100%;
+}
+
+mat-header-cell {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.out-of-stock {
+  background-color: #ffe6e6 !important; /* đỏ nhạt */
+  color: #b00020; /* đỏ đậm */
+  font-weight: 500;
+}

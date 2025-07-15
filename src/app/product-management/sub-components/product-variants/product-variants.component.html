@@ -36,7 +36,27 @@
       </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button [mat-menu-trigger-for]="menu">
+          <mat-icon>settings</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openEditForm(row)">Edit</button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
 </mat-card>
+@if(isOpenEditModal){
+<app-product-edit-form
+  [name]="selectedVariant?.name"
+  [price]="selectedVariant?.price"
+  (onCancel)="closeEditModal()"
+  (onSave)="onSubmitEditForm($event)"
+></app-product-edit-form>
+}

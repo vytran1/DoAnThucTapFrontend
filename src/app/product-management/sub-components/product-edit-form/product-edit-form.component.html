@@ -1,0 +1,33 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h2>Edit Variant</h2>
+
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="newName" />
+        <mat-error *ngIf="form.get('newName')?.hasError('required')">
+          Name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="w-100">
+        <mat-label>Price</mat-label>
+        <input matInput type="number" formControlName="newPrice" />
+        <mat-error *ngIf="form.get('newPrice')?.hasError('required')">
+          Price is required
+        </mat-error>
+        <mat-error *ngIf="form.get('newPrice')?.hasError('min')">
+          Price must be greater than 0
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button-group">
+        <button mat-raised-button color="primary" type="submit">Save</button>
+        <button mat-button color="warn" type="button" (click)="closed()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

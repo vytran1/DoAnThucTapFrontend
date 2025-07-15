@@ -1,1 +1,44 @@
-<p>product-inventory works!</p>
+@if(isLoading){
+<app-loading></app-loading>
+}@else {
+
+<mat-card class="inventory-card">
+  <mat-card-title>Inventory Overview</mat-card-title>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+    <!-- Product Name -->
+    <ng-container matColumnDef="product_name">
+      <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.name }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- SKU -->
+    <ng-container matColumnDef="sku">
+      <mat-header-cell *matHeaderCellDef> SKU </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.sku }} </mat-cell>
+    </ng-container>
+
+    <!-- Price -->
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{ element.price | currency : "USD" }}
+      </mat-cell>
+    </ng-container>
+
+    <!-- Onhand -->
+    <ng-container matColumnDef="onhand">
+      <mat-header-cell *matHeaderCellDef> On Hand </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.on_hand }} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      [class.out-of-stock]="row.on_hand === 0"
+    ></mat-row>
+  </mat-table>
+</mat-card>
+}

@@ -1,0 +1,28 @@
+/* error-page.component.css */
+.error-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
+}
+
+.error-card {
+  padding: 24px;
+  text-align: center;
+  max-width: 400px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+}
+
+.error-icon {
+  font-size: 48px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.error-message {
+  margin: 16px 0;
+  font-size: 16px;
+  color: #555;
+}
