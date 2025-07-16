@@ -16,4 +16,10 @@ export class StockingService {
       observe: 'response',
     });
   }
+
+  getStockingOfInventory(id: number): Observable<HttpResponse<any>> {
+    return this.httpClient.get(`${this.host}/api/stocking/inventory/${id}`, {
+      observe: 'response',
+    });
+  }
 }

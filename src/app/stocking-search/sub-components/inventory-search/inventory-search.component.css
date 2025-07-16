@@ -1,0 +1,27 @@
+.product-search-container {
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.search-input {
+  flex: 1;
+}
+
+.result-table table {
+  width: 100%;
+}
+
+/* Highlight rows with 0 quantity */
+.danger-row {
+  background-color: #ffe5e5 !important;
+  color: #c62828;
+  font-weight: 500;
+}
