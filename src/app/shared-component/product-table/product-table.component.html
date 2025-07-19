@@ -1,0 +1,101 @@
+<div class="overlay" (click)="closeForm()">
+  <div class="form-wrapper" (click)="$event.stopPropagation()">
+    <mat-card class="form-card">
+      <!-- Form controls -->
+      <div class="filter-form">
+        <!-- Search by Name -->
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Search by Name</mat-label>
+          <input
+            matInput
+            [(ngModel)]="searchName"
+            placeholder="Enter product name"
+          />
+        </mat-form-field>
+
+        <!-- Select Category -->
+        <mat-form-field appearance="fill" class="form-field">
+          <mat-label>Select Category</mat-label>
+          <mat-select
+            [(value)]="selectedCategoryId"
+            (selectionChange)="onCategoryChange()"
+          >
+            <mat-option [value]="null">All Categories</mat-option>
+            <mat-option
+              *ngFor="let category of categories"
+              [value]="category.id"
+            >
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Filter Button -->
+        <button mat-raised-button color="primary" (click)="onFilter()">
+          Filter
+        </button>
+      </div>
+
+      <div class="table-scroll-container">
+        <!-- Table -->
+        <mat-table [dataSource]="filteredProducts" class="mat-elevation-z8">
+          <!-- Checkbox Column -->
+          <ng-container matColumnDef="select">
+            <mat-header-cell *matHeaderCellDef>
+              <mat-checkbox
+                (change)="toggleAll($event)"
+                [checked]="isAllSelected()"
+              ></mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <mat-checkbox
+                (change)="toggleSelection(row)"
+                [checked]="isSelected(row)"
+              ></mat-checkbox>
+            </mat-cell>
+          </ng-container>
+
+          <!-- SKU Column -->
+          <ng-container matColumnDef="sku">
+            <mat-header-cell *matHeaderCellDef> SKU </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.sku }} </mat-cell>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+          </ng-container>
+
+          <mat-header-row
+            *matHeaderRowDef="['select', 'sku', 'name']"
+          ></mat-header-row>
+          <mat-row
+            *matRowDef="let row; columns: ['select', 'sku', 'name']"
+          ></mat-row>
+        </mat-table>
+      </div>
+      <!-- Pagination -->
+      <app-page-num
+        [currentPage]="pageNum"
+        [totalItems]="totalItems"
+        [pageSize]="pageSize"
+        (pageChange)="onPageChange($event)"
+      ></app-page-num>
+      @if(isOpenMessageModel){
+      <app-message-modal
+        [message]="message"
+        [title]="title"
+        (closed)="closeModalMessage()"
+      ></app-message-modal>
+      }
+      <!-- Fixed Add Stock Footer -->
+      <div class="footer-action">
+        <span>{{ selectedProducts.length }} item(s) selected</span>
+        <button ton mat-raised-button color="primary" (click)="addStock()">
+          Add Stock
+        </button>
+      </div>
+    </mat-card>
+  </div>
+</div>

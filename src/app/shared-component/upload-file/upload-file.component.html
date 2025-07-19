@@ -1,0 +1,36 @@
+<div class="overlay">
+  <mat-card class="modal-card">
+    <h2 class="title">Upload File</h2>
+
+    <div class="upload-box" (click)="fileInput.click()">
+      <input
+        type="file"
+        #fileInput
+        hidden
+        [accept]="acceptType"
+        (change)="onFileSelected($event)"
+      />
+
+      <button mat-stroked-button color="primary">
+        <mat-icon>upload</mat-icon>
+        Choose File
+      </button>
+
+      <div class="file-name">
+        {{ selectedFile?.name || "No file chosen" }}
+      </div>
+    </div>
+
+    <div class="actions">
+      <button mat-stroked-button (click)="cancel()">Cancel</button>
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="submit()"
+        [disabled]="!selectedFile"
+      >
+        Upload
+      </button>
+    </div>
+  </mat-card>
+</div>

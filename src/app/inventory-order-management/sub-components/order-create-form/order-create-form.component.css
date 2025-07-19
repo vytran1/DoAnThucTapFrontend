@@ -1,0 +1,76 @@
+.stockin-container {
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.supplier-select {
+  width: 500px; /* tăng từ 300 lên 500 */
+  margin-bottom: 16px;
+}
+
+.button-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.button-row.right {
+  justify-content: flex-end;
+}
+
+.stock-table {
+  width: 100%;
+}
+
+.empty-text {
+  text-align: center;
+  color: gray;
+  margin-top: 16px;
+  font-style: italic;
+}
+
+/* ✅ Create Stock-in button align right */
+.create-stockin-button {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+.table-scroll-wrapper {
+  max-height: 400px; /* hoặc 300px, 500px tùy bạn muốn */
+  overflow-y: auto;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.error-input-message {
+  margin-top: 5px;
+  background-color: #ffe6e6; /* nền đỏ nhạt */
+  border-left: 4px solid #ff4d4d; /* viền trái đỏ đậm */
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #cc0000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.error-input-message p {
+  margin: 0;
+}
+
+/* Optional: fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,38 @@
+<mat-card class="status-card">
+  <mat-card-title>Status History</mat-card-title>
+
+  <div class="timeline-container">
+    <div
+      class="timeline-item"
+      *ngFor="let item of statusHistory; let i = index"
+    >
+      <div class="timeline-marker">
+        <mat-icon *ngIf="i < statusHistory.length - 1">arrow_downward</mat-icon>
+        <div *ngIf="i === statusHistory.length - 1" class="final-marker"></div>
+      </div>
+      <div class="timeline-details">
+        <div class="status-name">
+          {{ item.status.toUpperCase() }} - {{ item.description.toUpperCase() }}
+        </div>
+        <div class="status-meta">
+          {{ item.created_at | date : "dd/MM/yyyy HH:mm" }} |
+          <mat-icon class="person-icon">person</mat-icon> Updated by:
+          {{ item.updater }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="action-button">
+    <button mat-raised-button color="primary" (click)="onOpenStatusList()">
+      Update Status
+    </button>
+  </div>
+  @if(isOpenStatusList){
+  <app-status-list
+    [statusList]="statusList"
+    (cancelled)="onCancel()"
+    (statusSelected)="onSubmit($event)"
+  ></app-status-list>
+  }
+</mat-card>

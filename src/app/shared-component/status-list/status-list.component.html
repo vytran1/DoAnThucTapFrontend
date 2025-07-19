@@ -1,0 +1,27 @@
+<div class="overlay">
+  <form class="form-container">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Status</mat-label>
+      <mat-select [(value)]="selectedStatus">
+        <mat-option *ngFor="let status of statusList" [value]="status">
+          {{ status }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="actions">
+      <button mat-stroked-button type="button" (click)="cancel()">
+        Cancel
+      </button>
+      <button
+        mat-flat-button
+        color="primary"
+        type="button"
+        (click)="submit()"
+        [disabled]="!selectedStatus"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

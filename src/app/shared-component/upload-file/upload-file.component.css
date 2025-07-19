@@ -1,0 +1,51 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-card {
+  width: 480px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.title {
+  margin: 0;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.upload-box {
+  border: 2px dashed #4caf50;
+  padding: 20px;
+  border-radius: 6px;
+  background: #f9fff9;
+  text-align: center;
+  cursor: pointer;
+}
+
+.upload-box:hover {
+  background-color: #eefaf0;
+}
+
+.file-name {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #4caf50;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}

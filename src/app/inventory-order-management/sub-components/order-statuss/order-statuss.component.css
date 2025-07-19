@@ -1,0 +1,104 @@
+.status-card {
+  /* Loại bỏ max-width để thẻ trải dài hơn */
+  width: 95%; /* Chiều rộng mong muốn, bạn có thể điều chỉnh */
+  margin: 24px auto;
+  padding: 24px; /* Tăng padding để trông thoáng đãng hơn */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Thêm shadow nhẹ */
+  border-radius: 8px; /* Bo góc nhẹ */
+  background-color: #ffffff;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 1px solid #eee; /* Thêm đường kẻ dưới tiêu đề */
+  padding-bottom: 15px;
+}
+
+.timeline-container {
+  position: relative;
+  margin: 20px 0;
+  padding-left: 60px; /* Tăng padding-left để có khoảng trống cho marker */
+  border-left: 2px solid #e0e0e0; /* Màu xám nhẹ hơn cho đường timeline */
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px; /* Tăng khoảng cách giữa các item */
+  padding: 10px 0;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -40px; /* Di chuyển marker ra xa hơn */
+  top: 0;
+  width: 36px; /* Kích thước lớn hơn cho hình tròn */
+  height: 36px; /* Kích thước lớn hơn cho hình tròn */
+  background-color: #1976d2; /* Màu xanh đậm cho hình tròn */
+  border: 3px solid #1976d2; /* Viền trùng màu nền */
+  border-radius: 50%; /* Hình tròn */
+  display: flex; /* Dùng flexbox để căn giữa icon */
+  justify-content: center;
+  align-items: center;
+  color: white; /* Màu trắng cho icon */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Thêm shadow cho marker */
+}
+
+.timeline-marker mat-icon {
+  font-size: 24px; /* Kích thước icon mũi tên */
+}
+
+.final-marker {
+  width: 18px; /* Kích thước nhỏ hơn cho chấm tròn cuối cùng */
+  height: 18px;
+  background-color: #1976d2;
+  border-radius: 50%;
+  border: 3px solid #1976d2;
+  position: absolute; /* Đảm bảo nó nằm đúng vị trí */
+  top: 9px; /* Căn chỉnh vị trí */
+  left: 6px; /* Căn chỉnh vị trí */
+}
+
+.timeline-details {
+  padding-left: 15px; /* Tăng padding-left cho nội dung */
+  background-color: #f9f9f9; /* Màu nền nhẹ cho chi tiết */
+  padding: 15px 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.status-name {
+  font-weight: 700; /* Đậm hơn */
+  text-transform: uppercase;
+  font-size: 16px; /* Kích thước lớn hơn */
+  color: #2c3e50; /* Màu chữ đậm hơn */
+  margin-bottom: 5px;
+}
+
+.status-meta {
+  font-size: 14px; /* Kích thước lớn hơn */
+  color: #7f8c8d; /* Màu chữ dịu hơn */
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Khoảng cách giữa icon và text */
+}
+
+.status-meta .person-icon {
+  font-size: 16px; /* Kích thước icon người */
+  color: #7f8c8d;
+}
+
+.action-button {
+  text-align: right;
+  margin-top: 30px; /* Tăng khoảng cách trên button */
+  padding-top: 20px;
+  border-top: 1px solid #eee; /* Đường kẻ trên button */
+}
+
+.action-button button {
+  padding: 10px 25px; /* Kích thước button lớn hơn */
+  font-size: 16px;
+  border-radius: 5px; /* Bo góc button */
+}

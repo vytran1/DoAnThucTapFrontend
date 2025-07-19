@@ -1,0 +1,33 @@
+<div class="tab-nav-wrapper">
+  <nav mat-tab-nav-bar>
+    @for (tab of tabs; track $index) {
+    <a
+      mat-tab-link
+      [active]="selectedIndex === $index"
+      (click)="selectedIndex = $index"
+    >
+      {{ tab.label }}
+    </a>
+    }
+  </nav>
+</div>
+
+<div class="tab-content-wrapper">
+  <ng-container>
+    @switch (selectedIndex) { @case(0){
+    <div>
+      <app-order-overview [orderId]="orderId"></app-order-overview>
+    </div>
+    } @case (1) {
+    <div>
+      <app-order-statuss [orderId]="orderId"></app-order-statuss>
+    </div>
+    } @case (2) {
+    <div>
+      <app-order-quote-price></app-order-quote-price>
+    </div>
+    } @case (3) {
+    <div></div>
+    } }
+  </ng-container>
+</div>

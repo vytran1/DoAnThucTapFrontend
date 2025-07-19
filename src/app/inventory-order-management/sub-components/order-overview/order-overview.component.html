@@ -1,0 +1,89 @@
+<mat-card>
+  <div class="header-row">
+    <!-- Left: Only Stock-in Ref. No. -->
+    <div class="left-section">
+      <div>
+        <strong>Stock-in Ref. No.</strong> <br />
+        {{ generalInformation?.order_code }}
+      </div>
+    </div>
+
+    <!-- Right: Other info -->
+    <div class="right-section">
+      <div>
+        <strong>Line Items</strong> <br />
+        {{ generalInformation?.line_items }}
+      </div>
+      <div>
+        <strong>Staff</strong> <br />
+        <a>{{ generalInformation?.employee }}</a>
+      </div>
+      <div>
+        <strong>Current Status</strong> <br />
+        {{ generalInformation?.current_status }}
+      </div>
+      <div>
+        <strong>Completed At</strong> <br />
+        {{ generalInformation?.completed_at | date : "dd MMM HH:mm" }}
+      </div>
+      <div>
+        <strong>Date/Time Created</strong> <br />
+        {{ generalInformation?.created_at | date : "dd MMM HH:mm" }}
+      </div>
+    </div>
+  </div>
+
+  <mat-divider></mat-divider>
+
+  <div class="table-container">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="mat-elevation-z1"
+      style="width: 100%"
+    >
+      <!-- SKU -->
+      <ng-container matColumnDef="sku">
+        <th mat-header-cell *matHeaderCellDef>Product Name / SKU</th>
+        <td mat-cell *matCellDef="let row">{{ row.sku }}</td>
+      </ng-container>
+
+      <!-- Quantity -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let row">{{ row.quantity }}</td>
+      </ng-container>
+
+      <!-- Cost Price -->
+      <ng-container matColumnDef="costPrice">
+        <th mat-header-cell *matHeaderCellDef>Cost Price</th>
+        <td mat-cell *matCellDef="let row">{{ row.cost_price | currency }}</td>
+      </ng-container>
+
+      <!-- Quote Price -->
+      <ng-container matColumnDef="quotePrice">
+        <th mat-header-cell *matHeaderCellDef>Quote Price</th>
+        <td mat-cell *matCellDef="let row">{{ row.quote_price | currency }}</td>
+      </ng-container>
+
+      <!-- Expected Price -->
+      <ng-container matColumnDef="expectedPrice">
+        <th mat-header-cell *matHeaderCellDef>Expected Price</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.expected_price | currency }}
+        </td>
+      </ng-container>
+
+      <!-- Total Cost Price -->
+      <ng-container matColumnDef="totalCostPrice">
+        <th mat-header-cell *matHeaderCellDef>Total Cost Price</th>
+        <td mat-cell *matCellDef="let row">
+          {{ row.quantity * row.cost_price | currency }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</mat-card>

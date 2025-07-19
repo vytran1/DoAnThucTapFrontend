@@ -19,4 +19,10 @@ export class CategoryService {
       { observe: 'response' }
     );
   }
+
+  public getCategoriesForDropDownList(): Observable<HttpResponse<any>> {
+    return this.httpClient.get(`${this.host}/api/categories/list/drop-down`, {
+      observe: 'response',
+    });
+  }
 }
