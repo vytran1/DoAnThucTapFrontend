@@ -31,4 +31,51 @@ export class InventoryOrderService {
       observe: 'response',
     });
   }
+
+  public getQuote(id: number): Observable<HttpResponse<any>> {
+    return this.httpClient.get(`${this.host}/api/orders/${id}/quote`, {
+      observe: 'response',
+    });
+  }
+
+  public acceptQuotationByWarehouse(id: number): Observable<HttpResponse<any>> {
+    return this.httpClient.get(
+      `${this.host}/api/orders/${id}/quote/accept_price`,
+      { observe: 'response' }
+    );
+  }
+
+  public rejectQuotationByWarehouse(id: number): Observable<HttpResponse<any>> {
+    return this.httpClient.post(
+      `${this.host}/api/orders/${id}/quote/reject_price`,
+      null,
+      { observe: 'response' }
+    );
+  }
+
+  public rejectOrder(id: number): Observable<HttpResponse<any>> {
+    return this.httpClient.post(
+      `${this.host}/api/orders/${id}/status/reject`,
+      null,
+      {
+        observe: 'response',
+      }
+    );
+  }
+
+  public payingOrder(id: number): Observable<HttpResponse<any>> {
+    return this.httpClient.post(
+      `${this.host}/api/orders/${id}/status/paying`,
+      null,
+      { observe: 'response' }
+    );
+  }
+
+  public updateFinishStatus(id: number): Observable<HttpResponse<any>> {
+    return this.httpClient.post(
+      `${this.host}/api/orders/${id}/status/finished`,
+      null,
+      { observe: 'response' }
+    );
+  }
 }

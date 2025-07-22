@@ -1,0 +1,86 @@
+.container {
+  padding: 20px;
+}
+
+.mb-4 {
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+mat-card-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+.quote-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 24px;
+  font-size: 14px;
+  padding: 8px;
+}
+.scrollable-table {
+  max-height: 300px;
+  overflow: auto;
+}
+.mt-3 {
+  margin-top: 1rem;
+}
+.rejected-banner {
+  background-color: #ffe5e5;
+  border-left: 5px solid #d32f2f;
+  color: #b71c1c;
+  padding: 12px 16px;
+  margin: 12px 0 24px 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+}
+
+.rejected-banner mat-icon {
+  vertical-align: middle;
+}
+
+.reason-text {
+  font-style: italic;
+  margin-left: 4px;
+}
+.accepted-banner {
+  background-color: #e8f5e9;
+  border-left: 5px solid #388e3c;
+  color: #2e7d32;
+  padding: 12px 16px;
+  margin: 12px 0 24px 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+}
+
+.accepted-banner mat-icon {
+  vertical-align: middle;
+}
+.pending-banner {
+  background-color: #fff8e1;
+  border-left: 5px solid #fbc02d;
+  color: #f57f17;
+  padding: 12px 16px;
+  margin: 12px 0 24px 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+}
+
+.pending-banner mat-icon {
+  vertical-align: middle;
+}

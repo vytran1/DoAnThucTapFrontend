@@ -9,8 +9,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class WarningModalComponent {
   @Input() visible: boolean = false;
-  @Input() title: string = 'Cảnh báo';
-  @Input() message: string = 'Bạn có chắc chắn muốn thực hiện hành động này?';
+  @Input() title: string = 'Warning';
+  @Input() message: string = 'Are you sure you want to perform this action?';
 
   @Output() confirm = new EventEmitter<void>();
   @Output() cancel = new EventEmitter<void>();

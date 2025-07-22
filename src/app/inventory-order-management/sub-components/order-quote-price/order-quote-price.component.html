@@ -1,1 +1,207 @@
-<p>order-quote-price works!</p>
+@if(isLoading){
+<app-loading></app-loading>
+}@else {
+
+<div class="container" *ngIf="quoteView">
+  <h2>Supplier Quotation</h2>
+  <div *ngIf="quoteView.status_type === 'PENDING'" class="pending-banner">
+    <mat-icon color="accent">hourglass_empty</mat-icon>
+    Supplier has <strong>NOT YET RESPONDED</strong> with a quotation.
+  </div>
+  <div *ngIf="quoteView.status_type === 'REJECT'" class="rejected-banner">
+    <mat-icon color="warn">error_outline</mat-icon>
+    This quotation has been <strong>REJECTED</strong> – Reason:
+    <span class="reason-text">{{
+      quoteView.data.quote_information.reason || "No reason provided"
+    }}</span>
+  </div>
+  <div *ngIf="quoteView.status_type === 'ACCEPT'" class="accepted-banner">
+    <mat-icon color="primary">check_circle</mat-icon>
+    Supplier has <strong>ACCEPTED</strong> the order and submitted quotation.
+  </div>
+
+  <!-- Quote Information -->
+  <ng-container *ngIf="quoteView.status_type !== 'PENDING'">
+    <mat-card class="mb-4">
+      <mat-card-title>Quote Information</mat-card-title>
+      <mat-card-content>
+        <div class="quote-info-grid">
+          <div>
+            <strong>Company Name:</strong>
+            {{ quoteView.data.quote_information.company_name }}
+          </div>
+          <div>
+            <strong>Email:</strong> {{ quoteView.data.quote_information.email }}
+          </div>
+          <div>
+            <strong>Phone:</strong> {{ quoteView.data.quote_information.phone }}
+          </div>
+          <div>
+            <strong>Quoted By:</strong>
+            {{ quoteView.data.quote_information.quoted_by }}
+          </div>
+          <div>
+            <strong>Position:</strong>
+            {{ quoteView.data.quote_information.position }}
+          </div>
+          <div>
+            <strong>Date:</strong>
+            {{
+              quoteView.data.quote_information.quotation_date
+                | date : "mediumDate"
+            }}
+          </div>
+
+          <!-- Check if shipping fee exists -->
+          <div *ngIf="quoteView.data.quote_information.shipping_fee !== null">
+            <strong>Shipping Fee:</strong>
+            {{
+              quoteView.data.quote_information.shipping_fee | number : "1.0-2"
+            }}
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+
+  <!-- Quote Items -->
+  <ng-container *ngIf="quoteView.status">
+    <mat-card class="mb-4">
+      <mat-card-title>Quote Items</mat-card-title>
+      <mat-card-content class="scrollable-table">
+        <table
+          mat-table
+          [dataSource]="quoteView.data.quote_items"
+          class="mat-elevation-z2"
+          matSort
+        >
+          <ng-container matColumnDef="sku">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>SKU</th>
+            <td mat-cell *matCellDef="let item">{{ item.sku }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="product_name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Product</th>
+            <td mat-cell *matCellDef="let item">{{ item.product_name }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quoted_price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Quoted Price
+            </th>
+            <td mat-cell *matCellDef="let item">
+              {{ item.quoted_price | number : "1.0-0" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="currency">
+            <th mat-header-cell *matHeaderCellDef>Currency</th>
+            <td mat-cell *matCellDef="let item">{{ item.currency }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="quoteItemDisplayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: quoteItemDisplayedColumns"
+          ></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+    <!-- Order Details -->
+    <mat-card class="mb-4">
+      <mat-card-title>Order Details</mat-card-title>
+      <mat-card-content class="scrollable-table">
+        <table
+          mat-table
+          [dataSource]="quoteView.details"
+          class="mat-elevation-z2"
+        >
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Product</th>
+            <td mat-cell *matCellDef="let d">{{ d.name }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="sku">
+            <th mat-header-cell *matHeaderCellDef>SKU</th>
+            <td mat-cell *matCellDef="let d">{{ d.sku }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>Quantity</th>
+            <td mat-cell *matCellDef="let d">{{ d.quantity }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="cost_price">
+            <th mat-header-cell *matHeaderCellDef>Cost Price</th>
+            <td mat-cell *matCellDef="let d">{{ d.cost_price | number }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="quote_price">
+            <th mat-header-cell *matHeaderCellDef>Quote Price</th>
+            <td mat-cell *matCellDef="let d">{{ d.quote_price | number }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="expected_price">
+            <th mat-header-cell *matHeaderCellDef>Expected Price</th>
+            <td mat-cell *matCellDef="let d">
+              {{ d.expected_price | number }}
+            </td>
+          </ng-container>
+
+          <tr
+            mat-header-row
+            *matHeaderRowDef="orderDetailDisplayedColumns"
+          ></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: orderDetailDisplayedColumns"
+          ></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+    <div class="button-group">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="
+          openWarningModal(
+            'Confirm Price Acceptance',
+            'Are you sure you want to accept this quoted price? This action cannot be undone.',
+            true
+          )
+        "
+      >
+        Accept Price
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="
+          openWarningModal(
+            'Reject Quotation?',
+            'Are you sure you want to reject this quotation?This action cannot be undone.',
+            false
+          )
+        "
+      >
+        Reject Price
+      </button>
+    </div>
+  </ng-container>
+  <app-warning-modal
+    [visible]="isOpenWarningModal"
+    [title]="titleForWarningModal"
+    [message]="messageForWarningModal"
+    (cancel)="closeWarningModal()"
+    (confirm)="callOperation()"
+  ></app-warning-modal>
+  @if(isOpenMessageModal){
+  <app-message-modal
+    [title]="titleForMessageModel"
+    [message]="messageForMessageModal"
+    (closed)="closeMessageModel()"
+  ></app-message-modal>
+  }
+</div>
+
+}

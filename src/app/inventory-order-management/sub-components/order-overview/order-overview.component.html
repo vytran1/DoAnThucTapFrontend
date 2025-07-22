@@ -4,7 +4,7 @@
     <div class="left-section">
       <div>
         <strong>Stock-in Ref. No.</strong> <br />
-        {{ generalInformation?.order_code }}
+        {{ generalInformation.order_code }}
       </div>
     </div>
 
@@ -12,23 +12,23 @@
     <div class="right-section">
       <div>
         <strong>Line Items</strong> <br />
-        {{ generalInformation?.line_items }}
+        {{ generalInformation.line_items }}
       </div>
       <div>
         <strong>Staff</strong> <br />
-        <a>{{ generalInformation?.employee }}</a>
+        <a>{{ generalInformation.employee }}</a>
       </div>
       <div>
         <strong>Current Status</strong> <br />
-        {{ generalInformation?.current_status }}
+        {{ generalInformation.current_status }}
       </div>
       <div>
         <strong>Completed At</strong> <br />
-        {{ generalInformation?.completed_at | date : "dd MMM HH:mm" }}
+        {{ generalInformation.completed_at | date : "dd MMM HH:mm" }}
       </div>
       <div>
         <strong>Date/Time Created</strong> <br />
-        {{ generalInformation?.created_at | date : "dd MMM HH:mm" }}
+        {{ generalInformation.created_at | date : "dd MMM HH:mm" }}
       </div>
     </div>
   </div>

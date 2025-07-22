@@ -24,9 +24,18 @@
   </div>
 
   <div class="action-button">
+    @if (shouldDisableUpdate()) {
+    <div *ngIf="isRejectedOrder()" style="color: red; font-weight: bold">
+      The order has been cancelled
+    </div>
+    <div *ngIf="isReviewedReject()" style="color: red; font-weight: bold">
+      Supplier has rejected the quote
+    </div>
+    } @else {
     <button mat-raised-button color="primary" (click)="onOpenStatusList()">
       Update Status
     </button>
+    }
   </div>
   @if(isOpenStatusList){
   <app-status-list
@@ -34,5 +43,11 @@
     (cancelled)="onCancel()"
     (statusSelected)="onSubmit($event)"
   ></app-status-list>
+  } @if(isOpenMessageModal){
+  <app-message-modal
+    [title]="title"
+    [message]="message"
+    (closed)="closeModalMessage()"
+  ></app-message-modal>
   }
 </mat-card>
