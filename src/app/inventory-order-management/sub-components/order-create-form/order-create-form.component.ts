@@ -26,6 +26,7 @@ import { SupplierService } from '../../../services/supplier.service';
 import { SupplierForDropdownList } from '../../../model/supplier-for-dropdown-list';
 import { OrderAggregator } from '../../../model/inventory-order/order-aggregator.model';
 import { InventoryOrderService } from '../../../services/inventory-order.service';
+import { WarningModalComponent } from '../../../shared-component/warning-modal/warning-modal.component';
 
 @Component({
   selector: 'app-order-create-form',
@@ -44,6 +45,7 @@ import { InventoryOrderService } from '../../../services/inventory-order.service
     UploadFileComponent,
     MessageModalComponent,
     ReactiveFormsModule,
+    WarningModalComponent,
   ],
   templateUrl: './order-create-form.component.html',
   styleUrl: './order-create-form.component.css',
@@ -58,6 +60,7 @@ export class OrderCreateFormComponent implements OnInit, OnDestroy {
   isOpenMessageModal = false;
   isProcessing = false;
 
+  isOpenWarningModal = false;
   title = '';
   message = '';
 
@@ -168,6 +171,10 @@ export class OrderCreateFormComponent implements OnInit, OnDestroy {
   }
 
   createStockIn() {
+    this.isOpenWarningModal = false;
+    this.title = '';
+    this.message = '';
+
     if (this.orderForm.invalid || this.stockItems.length === 0) {
       this.title = 'Invalid Form';
       this.message = 'Please select a supplier and add at least one product.';
@@ -268,5 +275,17 @@ export class OrderCreateFormComponent implements OnInit, OnDestroy {
       quantity: Number(row.quantity) || 0,
       expected_price: Number(row.expected_price) || 0,
     }));
+  }
+
+  openWarningModal() {
+    this.isOpenWarningModal = true;
+    this.title = 'Warning';
+    this.message = 'Please check order carefully';
+  }
+
+  closeWarningModal() {
+    this.isOpenWarningModal = false;
+    this.title = '';
+    this.message = '';
   }
 }

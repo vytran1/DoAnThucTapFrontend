@@ -1,6 +1,6 @@
 <mat-card class="stockin-container">
   <h2 class="title">New Stock-in</h2>
-  <form [formGroup]="orderForm" (ngSubmit)="createStockIn()">
+  <form [formGroup]="orderForm" (ngSubmit)="openWarningModal()">
     <mat-form-field appearance="fill" class="supplier-select">
       <mat-label>Supplier</mat-label>
       <mat-select formControlName="supplier">
@@ -101,7 +101,12 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Action</th>
           <td mat-cell *matCellDef="let row; let i = index">
-            <button mat-icon-button color="warn" (click)="removeItem(i)">
+            <button
+              mat-icon-button
+              color="warn"
+              type="button"
+              (click)="removeItem(i)"
+            >
               <mat-icon>delete</mat-icon>
             </button>
           </td>
@@ -150,4 +155,11 @@
   >
   </app-message-modal>
   }
+  <app-warning-modal
+    [visible]="isOpenWarningModal"
+    [title]="title"
+    [message]="message"
+    (confirm)="createStockIn()"
+    (cancel)="closeWarningModal()"
+  ></app-warning-modal>
 </mat-card>

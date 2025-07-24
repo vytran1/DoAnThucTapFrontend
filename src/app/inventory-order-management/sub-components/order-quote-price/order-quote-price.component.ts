@@ -59,6 +59,7 @@ export class OrderQuotePriceComponent implements OnInit, OnDestroy {
     'product_name',
     'quoted_price',
     'currency',
+    'description',
   ];
   orderDetailDisplayedColumns: string[] = [
     'name',

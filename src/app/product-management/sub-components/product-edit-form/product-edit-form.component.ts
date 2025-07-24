@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-product-edit-form',
@@ -15,6 +16,7 @@ import { CommonModule } from '@angular/common';
     MatInputModule,
     MatButtonModule,
     CommonModule,
+    NgxMaskDirective,
   ],
   templateUrl: './product-edit-form.component.html',
   styleUrl: './product-edit-form.component.css',
@@ -32,14 +34,17 @@ export class ProductEditFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      newName: ['', [Validators.required]],
-      newPrice: [this.price, [Validators.required, Validators.min(1)]],
+      newName: [this.name || '', [Validators.required]],
+      newPrice: [this.price || '', [Validators.required, Validators.min(1)]],
     });
   }
 
   save() {
     if (this.form.valid) {
-      this.onSave.emit(this.form.value);
+      this.onSave.emit({
+        newName: this.form.get('newName')?.value,
+        newPrice: Number(this.form.get('newPrice')?.value),
+      });
     } else {
       this.form.markAllAsTouched();
     }
@@ -47,5 +52,25 @@ export class ProductEditFormComponent implements OnInit {
 
   closed() {
     this.onCancel.emit();
+  }
+
+  priceFormatAndPositiveValidator() {
+    return (control: any) => {
+      const value = control.value;
+      const pattern = /^[0-9.]+$/;
+
+      if (!value) return null;
+
+      if (!pattern.test(value)) {
+        return { invalidFormat: true };
+      }
+
+      const cleaned = parseInt(value.replace(/\./g, ''), 10);
+      if (isNaN(cleaned) || cleaned <= 0) {
+        return { notPositive: true };
+      }
+
+      return null;
+    };
   }
 }

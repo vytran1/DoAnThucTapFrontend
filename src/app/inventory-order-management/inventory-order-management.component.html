@@ -1,2 +1,109 @@
-<p>inventory-order-management works!</p>
-<button (click)="redirectToCreateForm()">CREATE ORDER</button>
+<div class="container">
+  <!-- Filter Section -->
+  <div class="filter-bar" [formGroup]="form">
+    <div class="date-fields">
+      <mat-form-field appearance="fill">
+        <mat-label>From Date</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="startDate" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>To Date</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="endDate" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="button-group">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="applyFilter()"
+        [disabled]="form.invalid"
+      >
+        Apply Filter
+      </button>
+
+      <button mat-flat-button color="accent" (click)="redirectToCreateForm()">
+        Create Order
+      </button>
+    </div>
+  </div>
+
+  <!-- Error nếu chọn ngày không hợp lệ -->
+  <mat-error *ngIf="form.errors?.['dateRangeInvalid']" style="margin: 0 16px">
+    From Date must be before To Date
+  </mat-error>
+
+  <!-- Table Section -->
+  <div class="table-section">
+    <table
+      mat-table
+      [dataSource]="orders"
+      class="mat-elevation-z8 full-width-table"
+    >
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef>REFERENCE NO</th>
+        <td mat-cell *matCellDef="let order">
+          <a [routerLink]="['/inventory/inventory-order', order.id]">
+            {{ order.code }}
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="stock_in_date">
+        <th mat-header-cell *matHeaderCellDef>COMPLETED AT</th>
+        <td mat-cell *matCellDef="let order">
+          {{
+            order.completed_at
+              ? (order.stock_in_date | date : "medium")
+              : "Not Finish Order"
+          }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="total_quantity">
+        <th mat-header-cell *matHeaderCellDef>TOTAL QUANTITY</th>
+        <td mat-cell *matCellDef="let order">
+          {{ order.total_quantity | number : "1.0-0" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="employee">
+        <th mat-header-cell *matHeaderCellDef>STAFF</th>
+        <td mat-cell *matCellDef="let order">{{ order.employee }}</td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="[
+          'code',
+          'stock_in_date',
+          'total_quantity',
+          'employee'
+        ]"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="
+          let row;
+          columns: ['code', 'stock_in_date', 'total_quantity', 'employee']
+        "
+      ></tr>
+    </table>
+    <app-page-num
+      [currentPage]="pageNum"
+      [pageSize]="pageSize"
+      [totalItems]="totalItems"
+      (pageChange)="onPageChange($event)"
+    ></app-page-num>
+  </div>
+</div>

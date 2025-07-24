@@ -72,6 +72,9 @@ export class OrderStatussComponent implements OnInit, OnDestroy {
       case 'PAYING':
         this.updatePayingStatus();
         break;
+      case 'CHECKED':
+        this.updateCheckedStatus();
+        break;
       case 'FINISH':
         this.updateFinishStatus();
         break;
@@ -99,6 +102,24 @@ export class OrderStatussComponent implements OnInit, OnDestroy {
   updatePayingStatus() {
     this.subscriptions.push(
       this.inventoryOrderService.payingOrder(this.orderId).subscribe({
+        next: (response) => {
+          this.statusHistory.push(response.body);
+          this.title = 'RESULT';
+          this.message = 'Successfully updating status of Order';
+          this.isOpenMessageModal = true;
+        },
+        error: (err) => {
+          this.title = 'ERROR';
+          this.message = err.error;
+          this.isOpenMessageModal = true;
+        },
+      })
+    );
+  }
+
+  updateCheckedStatus() {
+    this.subscriptions.push(
+      this.inventoryOrderService.updateCheckedStatus(this.orderId).subscribe({
         next: (response) => {
           this.statusHistory.push(response.body);
           this.title = 'RESULT';
