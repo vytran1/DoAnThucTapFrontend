@@ -1,0 +1,110 @@
+.modal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}
+
+.product-modal-card {
+  width: 100%;
+  max-width: 900px;
+  padding: 1rem;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+mat-form-field {
+  min-width: 200px;
+  flex: 1;
+}
+
+.full-width {
+  width: 100%;
+}
+
+button[mat-button],
+button[mat-flat-button] {
+  min-width: 100px;
+  text-transform: none;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.modal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.product-modal-card {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 12px;
+  padding: 1rem;
+  background-color: #f9f9fc;
+}
+
+mat-card-content {
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+mat-form-field {
+  min-width: 200px;
+  flex: 1;
+}
+
+.full-width {
+  width: 100%;
+}
+
+button[mat-button],
+button[mat-flat-button] {
+  min-width: 100px;
+  text-transform: none;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+mat-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  flex-wrap: wrap;
+}
+.sticky-filter {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #f9f9fc;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e0e0e0;
+}

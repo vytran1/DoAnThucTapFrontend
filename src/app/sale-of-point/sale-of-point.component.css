@@ -1,0 +1,76 @@
+.sale-pos-container {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+.product-table {
+  flex: 2;
+  min-width: 500px;
+}
+
+.order-info {
+  flex: 1;
+  background-color: #f3f3f3;
+  padding: 1rem;
+  border-radius: 8px;
+  min-width: 250px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.order-info {
+  width: 300px;
+  position: sticky;
+  top: 16px;
+  align-self: flex-start;
+  background-color: #f9f9f9;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.toast-error {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background-color: #ffe6e6; /* đỏ nhạt */
+  border: 1px solid #ff4d4f; /* viền đỏ */
+  color: #a8071a; /* chữ đỏ đậm */
+  border-radius: 8px; /* bo góc */
+  font-size: 14px;
+  width: fit-content;
+  max-width: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* nhẹ nhàng */
+  animation: fadeIn 0.3s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -13,6 +13,7 @@ import { OrderCreateFormComponent } from './inventory-order-management/sub-compo
 import { OrderDetailsPageComponent } from './inventory-order-management/sub-components/order-details-page/order-details-page.component';
 import { ImportingFormDetailsPageComponent } from './importing-form-management/sub-components/importing-form-details-page/importing-form-details-page.component';
 import { RestockSuggestionComponent } from './restock-suggestion/restock-suggestion.component';
+import { SaleOfPointComponent } from './sale-of-point/sale-of-point.component';
 export const inventoryRoutes: Routes = [
   {
     path: 'inventory',
@@ -71,5 +72,9 @@ export const inventoryRoutes: Routes = [
         component: RestockSuggestionComponent,
       },
     ],
+  },
+  {
+    path: 'sale-of-point',
+    component: SaleOfPointComponent,
   },
 ];
