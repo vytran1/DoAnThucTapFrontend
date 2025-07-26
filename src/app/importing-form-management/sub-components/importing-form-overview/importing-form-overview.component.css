@@ -1,0 +1,58 @@
+.order-summary {
+  padding: 16px;
+}
+
+.summary-header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.summary-header .label {
+  font-weight: 500;
+  font-size: 13px;
+  color: gray;
+}
+
+.summary-header .value {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.summary-header .link {
+  color: #1e88e5;
+  cursor: pointer;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Header row chia 2 phần trái - phải */
+.header-row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16px;
+}
+
+/* Bên trái chỉ hiển thị stock in reference number */
+.left-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Bên phải chứa các thông tin còn lại */
+.right-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-left: auto; /* Đẩy toàn bộ section này sang phải */
+  text-align: right;
+}
+
+.right-section > div {
+  min-width: 140px;
+}

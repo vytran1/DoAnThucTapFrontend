@@ -37,6 +37,25 @@
             Exporting Form Management
           </a>
         </li>
+        <li class="has-submenu" [class.open]="isAnalysisOpen">
+          <div
+            class="submenu-toggle"
+            (click)="isAnalysisOpen = !isAnalysisOpen"
+          >
+            <span class="icon material-icons">analytics</span>
+            Analysis
+          </div>
+          <ul class="submenu" *ngIf="isAnalysisOpen">
+            <li>
+              <a routerLink="/inventory/analysis/restock-suggestion">
+                <span class="icon material-icons">refresh</span>
+                Restock Suggestion
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>Sale Of Point</li>
+        <li>Report</li>
         <li>
           <a (click)="onLogoutClick()">LOGOUT</a>
         </li>

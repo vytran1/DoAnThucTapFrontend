@@ -103,6 +103,15 @@ export class OrderCreateFormComponent implements OnInit, OnDestroy {
     this.dataSource = new MatTableDataSource(
       this.stockItems.controls as FormGroup[]
     );
+
+    const navigation = history.state;
+    const suggestionItems = navigation[
+      'suggestions'
+    ] as OrderDetailWithExpectedPrice[];
+
+    if (suggestionItems && Array.isArray(suggestionItems)) {
+      suggestionItems.forEach((item) => this.addStockItem(item));
+    }
   }
 
   ngOnDestroy(): void {

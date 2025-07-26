@@ -94,3 +94,76 @@ body {
   color: #555;
   border-top: 1px solid #ccc;
 }
+/* Menu có sub-menu */
+.has-submenu {
+  cursor: pointer;
+}
+
+.submenu-toggle {
+  font-weight: bold;
+  padding-left: 0;
+  transition: color 0.2s;
+}
+
+.submenu-toggle:hover {
+  color: #d4fcd4;
+}
+
+.submenu {
+  list-style: none;
+  padding-left: 15px;
+  margin-top: 8px;
+}
+
+.submenu li {
+  margin-bottom: 10px;
+}
+
+.submenu a {
+  color: #e4ffe4;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.submenu a:hover {
+  color: #c2ffc2;
+}
+/* Icon style */
+.icon {
+  font-size: 18px;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+/* Submenu indent */
+.submenu {
+  padding-left: 25px; /* 👈 thụt vào */
+}
+
+/* Toggle row để layout đẹp hơn */
+.submenu-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.submenu-toggle:hover {
+  color: #d4fcd4;
+}
+
+.submenu li a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #e4ffe4;
+  text-decoration: none;
+  font-weight: normal;
+  transition: color 0.2s;
+}
+
+.submenu li a:hover {
+  color: #c2ffc2;
+}

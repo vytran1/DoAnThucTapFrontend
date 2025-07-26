@@ -11,6 +11,8 @@ import { ImportingFormManagementComponent } from './importing-form-management/im
 import { ExportingFormManagementComponent } from './exporting-form-management/exporting-form-management.component';
 import { OrderCreateFormComponent } from './inventory-order-management/sub-components/order-create-form/order-create-form.component';
 import { OrderDetailsPageComponent } from './inventory-order-management/sub-components/order-details-page/order-details-page.component';
+import { ImportingFormDetailsPageComponent } from './importing-form-management/sub-components/importing-form-details-page/importing-form-details-page.component';
+import { RestockSuggestionComponent } from './restock-suggestion/restock-suggestion.component';
 export const inventoryRoutes: Routes = [
   {
     path: 'inventory',
@@ -59,6 +61,14 @@ export const inventoryRoutes: Routes = [
       {
         path: 'inventory-order/:orderId',
         component: OrderDetailsPageComponent,
+      },
+      {
+        path: 'importing-form/:formId',
+        component: ImportingFormDetailsPageComponent,
+      },
+      {
+        path: 'analysis/restock-suggestion',
+        component: RestockSuggestionComponent,
       },
     ],
   },

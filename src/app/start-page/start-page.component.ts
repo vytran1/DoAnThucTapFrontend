@@ -20,6 +20,7 @@ export class StartPageComponent implements OnInit, OnDestroy {
   is_open_modal: boolean = false;
   imageUrl: string = '';
   id: any;
+  isAnalysisOpen = false;
 
   constructor(
     private authService: AuthService,

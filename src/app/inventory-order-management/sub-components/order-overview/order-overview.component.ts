@@ -10,6 +10,9 @@ import { InventoryOrderService } from '../../../services/inventory-order.service
 import { Subscription } from 'rxjs';
 import { OrderDetailForOverview } from '../../../model/inventory-order/order-detail-for-overview.model';
 import { OrderOverview } from '../../../model/inventory-order/order-overview.model';
+import { Router } from '@angular/router';
+import { MessageModalComponent } from '../../../shared-component/message-modal/message-modal.component';
+import { LoadingComponent } from '../../../shared-component/loading/loading.component';
 
 @Component({
   selector: 'app-order-overview',
@@ -22,6 +25,8 @@ import { OrderOverview } from '../../../model/inventory-order/order-overview.mod
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
+    MessageModalComponent,
+    LoadingComponent,
   ],
   templateUrl: './order-overview.component.html',
   styleUrl: './order-overview.component.css',
@@ -32,7 +37,15 @@ export class OrderOverviewComponent implements OnInit, OnDestroy {
   @Input()
   orderId!: number;
 
-  constructor(private inventoryOrderService: InventoryOrderService) {}
+  isLoading = true;
+  isOpenMessageModal = false;
+  title = '';
+  message = '';
+
+  constructor(
+    private inventoryOrderService: InventoryOrderService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     if (this.orderId) {
@@ -40,6 +53,10 @@ export class OrderOverviewComponent implements OnInit, OnDestroy {
         .getOverview(this.orderId)
         .subscribe({
           next: (response) => {
+            this.title = '';
+            this.message = '';
+            this.isOpenMessageModal = false;
+            this.isLoading = false;
             console.log(response);
             const body = response.body;
 
@@ -57,6 +74,9 @@ export class OrderOverviewComponent implements OnInit, OnDestroy {
           },
           error: (err) => {
             console.log(err);
+            this.title = 'ERROR';
+            this.message = err.error;
+            this.isOpenMessageModal = true;
           },
         });
 
@@ -66,6 +86,13 @@ export class OrderOverviewComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
+  }
+
+  closeMessageModal() {
+    this.title = '';
+    this.message = '';
+    this.isOpenMessageModal = false;
+    this.router.navigateByUrl('/inventory/order-management');
   }
 
   dataSource: OrderDetailForOverview[] = [];

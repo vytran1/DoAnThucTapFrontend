@@ -1,0 +1,31 @@
+<div class="tab-nav-wrapper">
+  <nav mat-tab-nav-bar>
+    @for (tab of tabs; track $index) {
+    <a
+      mat-tab-link
+      [active]="selectedIndex === $index"
+      (click)="selectedIndex = $index"
+    >
+      {{ tab.label }}
+    </a>
+    }
+  </nav>
+</div>
+
+<div class="tab-content-wrapper">
+  <ng-container>
+    @switch (selectedIndex) { @case(0){
+    <div>
+      <app-suggestion-by-week></app-suggestion-by-week>
+    </div>
+    } @case (1) {
+    <div>
+      <app-suggestion-by-month></app-suggestion-by-month>
+    </div>
+    } @case (2) {
+    <div>
+      <app-suggestion-by-year></app-suggestion-by-year>
+    </div>
+    } }
+  </ng-container>
+</div>

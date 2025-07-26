@@ -1,0 +1,91 @@
+@if(isLoading){
+<app-loading></app-loading>
+}@else {
+
+<div class="container" *ngIf="invoice_info">
+  <h2>Supplier Invoice</h2>
+
+  <!-- Invoice Information -->
+  <mat-card class="mb-4">
+    <mat-card-title>Invoice Information</mat-card-title>
+    <mat-card-content>
+      <div class="quote-info-grid">
+        <div>
+          <strong>Company Name:</strong>
+          {{ invoice_info.quote_information.company_name }}
+        </div>
+        <div>
+          <strong>Email:</strong>
+          {{ invoice_info.quote_information.email }}
+        </div>
+        <div>
+          <strong>Phone:</strong>
+          {{ invoice_info.quote_information.phone }}
+        </div>
+        <div>
+          <strong>Created By:</strong>
+          {{ invoice_info.quote_information.quoted_by }}
+        </div>
+        <div>
+          <strong>Position:</strong>
+          {{ invoice_info.quote_information.position }}
+        </div>
+        <div>
+          <strong>Date:</strong>
+          {{
+            invoice_info.quote_information.quotation_date | date : "mediumDate"
+          }}
+        </div>
+        <div>
+          <strong>Invoice Code:</strong>
+          {{ invoice_info.quote_information.order_code }}
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Invoice Items -->
+  <mat-card class="mb-4">
+    <mat-card-title>Invoice Items</mat-card-title>
+    <mat-card-content class="scrollable-table">
+      <table
+        mat-table
+        [dataSource]="invoice_info.quote_items"
+        class="mat-elevation-z2"
+        matSort
+      >
+        <ng-container matColumnDef="sku">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>SKU</th>
+          <td mat-cell *matCellDef="let item">{{ item.sku }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="product_name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Product Variant
+          </th>
+          <td mat-cell *matCellDef="let item">{{ item.product_name }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="quoted_price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Unit Price</th>
+          <td mat-cell *matCellDef="let item">
+            {{ item.quoted_price | number : "1.0-2" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef>Quantity</th>
+          <td mat-cell *matCellDef="let item">{{ item.quantity }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="invoiceItemDisplayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: invoiceItemDisplayedColumns"
+        ></tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+}
