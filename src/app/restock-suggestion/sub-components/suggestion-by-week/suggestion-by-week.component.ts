@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { OrderDetailWithExpectedPrice } from '../../../model/inventory-order/order-detail-with-expected-price.model';
+import { SettingService } from '../../../services/setting.service';
 
 @Component({
   selector: 'app-suggestion-by-week',
@@ -67,7 +68,8 @@ export class SuggestionByWeekComponent implements OnInit, OnDestroy {
 
   constructor(
     private analysisService: AnalysisService,
-    private router: Router
+    private router: Router,
+    private settingService: SettingService
   ) {
     this.subscriptions.push(
       this.analysisService.getRestockAnalysisByWeek().subscribe({
@@ -110,16 +112,24 @@ export class SuggestionByWeekComponent implements OnInit, OnDestroy {
   }
 
   redirectToCreateOrder() {
+    const threshold =
+      Number(this.settingService.get('LOW_STOCK_THRESHOLD')) || 0;
+
     const productsToImport: OrderDetailWithExpectedPrice[] =
       this.restockSuggestions
         .filter((s) => s.need_to_be_imported)
-        .map((s) => ({
-          sku: s.sku,
-          name: s.name,
-          quantity:
-            s.predict_quantity_for_next_period - s.total_current_stocking,
-          expected_price: 1000,
-        }))
+        .map((s) => {
+          const baseQty =
+            s.predict_quantity_for_next_period - s.total_current_stocking;
+          const quantity = baseQty + threshold;
+
+          return {
+            sku: s.sku,
+            name: s.name,
+            quantity,
+            expected_price: 1000,
+          };
+        })
         .filter((item) => item.quantity > 0);
 
     this.router.navigate(['inventory/create-order'], {

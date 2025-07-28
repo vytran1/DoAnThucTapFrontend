@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { ProductVariantWithStock } from '../model/product/product-variant-with-stock.model';
 import { product_images_path } from '../../environment/environement.config';
 import { InvoiceService } from '../services/invoice.service';
+import { Router } from '@angular/router';
+import { MessageModalComponent } from '../shared-component/message-modal/message-modal.component';
 
 @Component({
   selector: 'app-sale-of-point',
@@ -25,6 +27,7 @@ import { InvoiceService } from '../services/invoice.service';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MessageModalComponent,
   ],
   templateUrl: './sale-of-point.component.html',
   styleUrl: './sale-of-point.component.css',
@@ -35,10 +38,16 @@ export class SaleOfPointComponent implements OnInit, OnDestroy {
   displayedColumns = ['image', 'sku', 'name', 'quantity', 'price', 'delete'];
   prefixPath = product_images_path;
   dataSource = new MatTableDataSource<any>([]);
+
+  isOpenMessageModal = false;
+  title = '';
+  message = '';
+
   constructor(
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
-    private invoiceService: InvoiceService
+    private invoiceService: InvoiceService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.orderForm = this.fb.group(
@@ -169,12 +178,40 @@ export class SaleOfPointComponent implements OnInit, OnDestroy {
     console.log('Request body to send:', invoice);
 
     this.invoiceService.save(invoice).subscribe({
-      next: (response) => {
-        console.log(response);
+      next: (blob) => {
+        console.log(blob);
+
+        const fileURL = URL.createObjectURL(blob);
+        const pdfWindow = window.open(fileURL, '_blank');
+
+        pdfWindow?.focus();
+        pdfWindow?.print();
+
+        this.orderDetails.clear();
+        this.updateDataSource();
+        this.orderForm.markAsPristine();
+        this.orderForm.markAsUntouched();
+
+        this.title = 'RESULT';
+        this.message = 'Successfully Creating Order';
+        this.isOpenMessageModal = true;
+
+        console.log('Invoice submitted and form reset.');
       },
       error: (err) => {
         console.log(err);
+        this.title = 'ERROR';
+        this.message = 'ERROR While Creating Order';
+        this.isOpenMessageModal = true;
       },
     });
+  }
+
+  goBackToInventory() {
+    this.router.navigateByUrl('/inventory/personal-info');
+  }
+
+  closeMessageModal() {
+    this.isOpenMessageModal = false;
   }
 }

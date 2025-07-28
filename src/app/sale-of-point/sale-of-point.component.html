@@ -4,9 +4,15 @@
   <div class="product-table">
     <div class="header">
       <h3>Product Table</h3>
-      <button mat-flat-button color="primary" (click)="openSearchingModal()">
-        + Choose Products
-      </button>
+      <div class="button-group">
+        <button mat-flat-button color="accent" (click)="goBackToInventory()">
+          <mat-icon>exit_to_app</mat-icon>
+          Back
+        </button>
+        <button mat-flat-button color="primary" (click)="openSearchingModal()">
+          + Choose Products
+        </button>
+      </div>
     </div>
 
     <form [formGroup]="orderForm">
@@ -140,5 +146,12 @@
     <div *ngIf="orderForm.hasError('noItems')" class="toast-error">
       <mat-error>You must select at least one product</mat-error>
     </div>
+    @if(isOpenMessageModal){
+    <app-message-modal
+      [message]="message"
+      [title]="title"
+      (closed)="closeMessageModal()"
+    ></app-message-modal>
+    }
   </div>
 </div>

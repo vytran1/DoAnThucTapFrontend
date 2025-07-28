@@ -12,9 +12,13 @@ export class InvoiceService {
 
   constructor(private httpClient: HttpClient) {}
 
-  save(requestBody: Invoice): Observable<HttpResponse<any>> {
-    return this.httpClient.post(`${this.host}/api/invoices`, requestBody, {
-      observe: 'response',
-    });
+  save(requestBody: Invoice): Observable<Blob> {
+    return this.httpClient.post(
+      'http://localhost:8080/api/invoices',
+      requestBody,
+      {
+        responseType: 'blob',
+      }
+    );
   }
 }

@@ -74,3 +74,7 @@
     transform: translateY(0);
   }
 }
+.button-group {
+  display: flex;
+  gap: 8px; /* Khoảng cách giữa 2 nút, bạn có thể điều chỉnh (ví dụ: 4px, 12px,...) */
+}
