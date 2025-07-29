@@ -21,6 +21,7 @@ export class StartPageComponent implements OnInit, OnDestroy {
   imageUrl: string = '';
   id: any;
   isAnalysisOpen = false;
+  isReportOpen = false;
 
   constructor(
     private authService: AuthService,

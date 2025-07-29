@@ -14,10 +14,15 @@ import { OrderDetailsPageComponent } from './inventory-order-management/sub-comp
 import { ImportingFormDetailsPageComponent } from './importing-form-management/sub-components/importing-form-details-page/importing-form-details-page.component';
 import { RestockSuggestionComponent } from './restock-suggestion/restock-suggestion.component';
 import { SaleOfPointComponent } from './sale-of-point/sale-of-point.component';
+import { SaleRevenueComponent } from './reports/sale-revenue/sale-revenue.component';
+import { inventoryGuard } from './guards/inventory.guard';
+import { inventoryChildGuard } from './guards/inventory-child.guard';
 export const inventoryRoutes: Routes = [
   {
     path: 'inventory',
     component: StartPageComponent,
+    canActivate: [inventoryGuard],
+    canActivateChild: [inventoryChildGuard],
     children: [
       {
         path: 'personal-info',
@@ -70,6 +75,10 @@ export const inventoryRoutes: Routes = [
       {
         path: 'analysis/restock-suggestion',
         component: RestockSuggestionComponent,
+      },
+      {
+        path: 'report/sales-revenue',
+        component: SaleRevenueComponent,
       },
     ],
   },

@@ -1,0 +1,43 @@
+.chart-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* căn giữa ngang */
+  gap: 30px;
+}
+
+.chart-container {
+  width: 100%;
+  height: 400px;
+}
+
+ngx-charts-bar-vertical {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* Phần hiển thị TOTAL VALUE */
+.total-value-box {
+  padding: 20px 30px;
+  background-color: #e6ffed;
+  border: 2px solid #2f855a;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2f855a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 350px;
+}
+
+.total-value-box .label {
+  text-transform: uppercase;
+}
+
+.total-value-box .value {
+  font-size: 26px;
+  color: #1a202c;
+}

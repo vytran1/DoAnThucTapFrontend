@@ -1,0 +1,31 @@
+.forbidden-container {
+  max-width: 500px;
+  margin: 100px auto;
+  padding: 40px;
+  background-color: #ffffff;
+  text-align: center;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.forbidden-icon {
+  font-size: 60px;
+  color: #e53935;
+  margin-bottom: 16px;
+}
+
+.forbidden-title {
+  font-size: 32px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.forbidden-message {
+  font-size: 16px;
+  margin-bottom: 24px;
+  color: #666;
+}
+
+button {
+  font-weight: bold;
+}

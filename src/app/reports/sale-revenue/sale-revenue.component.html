@@ -1,0 +1,31 @@
+<div class="tab-navigation-container">
+  <mat-tab-group [(selectedIndex)]="selectedTabIndex" mat-stretch-tabs>
+    <mat-tab label="CUSTOM"></mat-tab>
+    <mat-tab label="WEEK"></mat-tab>
+    <mat-tab label="MONTH"></mat-tab>
+    <mat-tab label="HALF YEAR"></mat-tab>
+    <mat-tab label="YEAR"></mat-tab>
+  </mat-tab-group>
+</div>
+
+<div class="tab-content-container" [ngSwitch]="selectedTabIndex">
+  <div *ngSwitchCase="0">
+    <h2>Custom Report</h2>
+    <p>Select start and end dates to generate a custom report.</p>
+  </div>
+  <div *ngSwitchCase="1">
+    <app-report-by-week></app-report-by-week>
+  </div>
+  <div *ngSwitchCase="2">
+    <h2>Monthly Report</h2>
+    <p>Revenue report for this month.</p>
+  </div>
+  <div *ngSwitchCase="3">
+    <h2>Half-Year Report</h2>
+    <p>Revenue report for the last 6 months.</p>
+  </div>
+  <div *ngSwitchCase="4">
+    <h2>Yearly Report</h2>
+    <p>Revenue report for the current year.</p>
+  </div>
+</div>

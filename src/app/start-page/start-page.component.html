@@ -57,7 +57,20 @@
         <li>
           <a routerLink="/sale-of-point"> Sale Of Point </a>
         </li>
-        <li>Report</li>
+        <li class="has-submenu" [class.open]="isReportOpen">
+          <div class="submenu-toggle" (click)="isReportOpen = !isReportOpen">
+            <span class="icon material-icons">bar_chart</span>
+            Report
+          </div>
+          <ul class="submenu" *ngIf="isReportOpen">
+            <li>
+              <a routerLink="/inventory/report/sales-revenue">
+                <span class="icon material-icons">trending_up</span>
+                Sales Revenue
+              </a>
+            </li>
+          </ul>
+        </li>
         <li>
           <a (click)="onLogoutClick()">LOGOUT</a>
         </li>

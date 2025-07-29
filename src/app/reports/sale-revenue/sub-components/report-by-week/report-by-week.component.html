@@ -1,0 +1,24 @@
+@if(loading){
+<app-loading></app-loading>
+}@else{
+
+<div class="chart-wrapper">
+  <div class="chart-container">
+    <ngx-charts-bar-vertical
+      [results]="report_items"
+      [scheme]="colorScheme"
+      [xAxis]="true"
+      [yAxis]="true"
+      [legend]="false"
+      [showDataLabel]="true"
+      [animations]="true"
+    >
+    </ngx-charts-bar-vertical>
+  </div>
+
+  <div class="total-value-box">
+    <span class="label">TOTAL VALUE:</span>
+    <span class="value">{{ total | number : "1.0-2" }}</span>
+  </div>
+</div>
+}
