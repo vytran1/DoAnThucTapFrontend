@@ -9,10 +9,12 @@ import { ProductInformationComponent } from './product-management/sub-components
 import { inventoryRoutes } from './vytran.routes';
 import { ErrorPageWrapperComponent } from './shared-component/error-page-wrapper/error-page-wrapper.component';
 import { ForbiddenPageComponent } from './shared-component/forbidden-page/forbidden-page.component';
+import { tuanngRoutes } from './tuannguyen.route';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   ...inventoryRoutes,
+  ...tuanngRoutes,
   { path: 'error', component: ErrorPageWrapperComponent },
   { path: 'forbidden', component: ForbiddenPageComponent },
   { path: '**', redirectTo: '/login', pathMatch: 'full' },
