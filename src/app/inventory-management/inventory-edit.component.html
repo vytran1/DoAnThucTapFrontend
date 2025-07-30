@@ -1,0 +1,85 @@
+<div class="edit-container">
+  <h1>Edit Inventory</h1>
+  <p>Update the information below to modify the inventory location.</p>
+
+  <div *ngIf="isLoading" class="loading-container">
+    <mat-spinner></mat-spinner>
+    <p>Loading inventory data...</p>
+  </div>
+  
+  <div *ngIf="hasServerErrors() && !isLoading" class="server-error-banner">
+    <mat-icon>error</mat-icon>
+    <span>Please correct the errors below and try again.</span>
+  </div>
+
+  <form class="inventory-form" [formGroup]="inventoryForm" (ngSubmit)="onSave()" *ngIf="!isLoading">
+    
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Inventory Name</mat-label>
+        <input matInput formControlName="inventoryName" placeholder="e.g., Central Warehouse" (blur)="trimWhitespace('inventoryName')">
+        <mat-error *ngIf="inventoryForm.get('inventoryName')?.hasError('required')">Name is required</mat-error>
+        <mat-error *ngIf="inventoryForm.get('inventoryName')?.hasError('serverError')">
+          {{ inventoryForm.get('inventoryName')?.getError('serverError') }}
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Inventory Code</mat-label>
+        <input matInput formControlName="inventoryCode" placeholder="e.g., KHO-HCM-Q1" (blur)="trimWhitespace('inventoryCode')">
+        <mat-error *ngIf="inventoryForm.get('inventoryCode')?.hasError('required')">Code is required</mat-error>
+        <mat-error *ngIf="inventoryForm.get('inventoryCode')?.hasError('serverError')">
+          {{ inventoryForm.get('inventoryCode')?.getError('serverError') }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Address</mat-label>
+      <input matInput formControlName="address" placeholder="e.g., 123 Nguyen Hue St." (blur)="trimWhitespace('address')">
+      <mat-hint>Enter the street name and number only.</mat-hint>
+      <mat-error *ngIf="inventoryForm.get('address')?.hasError('required')">Address is required</mat-error>
+      <mat-error *ngIf="inventoryForm.get('address')?.hasError('serverError')">
+        {{ inventoryForm.get('address')?.getError('serverError') }}
+      </mat-error>
+    </mat-form-field>
+    
+    <div class="form-row">
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>Province</mat-label>
+          <mat-select formControlName="provinceID">
+            <mat-option *ngFor="let province of provinces" [value]="province.id">
+              {{ province.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="inventoryForm.get('provinceID')?.hasError('required')">Province is required</mat-error>
+          <mat-error *ngIf="inventoryForm.get('provinceID')?.hasError('serverError')">
+            {{ inventoryForm.get('provinceID')?.getError('serverError') }}
+          </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="form-field">
+          <mat-label>District</mat-label>
+          <mat-select formControlName="districtID">
+              <mat-option *ngIf="districts.length === 0 && inventoryForm.get('provinceID')?.value" disabled>
+                  Loading districts...
+              </mat-option>
+              <mat-option *ngFor="let district of districts" [value]="district.id">
+                  {{ district.name }}
+              </mat-option>
+          </mat-select>
+          <mat-hint *ngIf="!inventoryForm.get('provinceID')?.value">Please select a Province first</mat-hint>
+          <mat-error *ngIf="inventoryForm.get('districtID')?.hasError('required')">District is required</mat-error>
+          <mat-error *ngIf="inventoryForm.get('districtID')?.hasError('serverError')">
+            {{ inventoryForm.get('districtID')?.getError('serverError') }}
+          </mat-error>
+        </mat-form-field>
+    </div>
+    
+    <div class="actions">
+      <button type="button" mat-stroked-button (click)="onCancel()">Cancel</button>
+      <button type="submit" mat-flat-button color="primary" [disabled]="inventoryForm.invalid">Update Inventory</button>
+    </div>
+
+  </form>
+</div>

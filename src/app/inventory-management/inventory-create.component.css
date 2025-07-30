@@ -1,0 +1,63 @@
+.create-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.create-container h1 {
+  margin-bottom: 0.5rem;
+}
+
+.create-container p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.inventory-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  gap: 16px; /* Khoảng cách giữa các ô */
+  width: 100%;
+}
+
+.form-field {
+  flex: 1; /* Chia đều không gian */
+}
+
+.full-width {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 1.5rem;
+}
+
+.server-error-banner {
+  display: flex;
+  align-items: center;
+  background-color: #ffebee;
+  border: 1px solid #e57373;
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  color: #c62828;
+}
+
+.server-error-banner mat-icon {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.server-error-banner span {
+  font-weight: 500;
+}
