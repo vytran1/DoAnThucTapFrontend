@@ -1,0 +1,41 @@
+/* src/app/pages/locations/locations.component.css */
+
+.locations-container {
+  padding: 24px;
+}
+
+.locations-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-field {
+  width: 100%;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.locations-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.create-button {
+  background-color: #e53935; /* Red color */
+  color: white;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-header-cell {
+    background-color: #fce4ec; /* Light pink background for header */
+    color: #333;
+    font-weight: bold;
+}
+
+
