@@ -1,0 +1,9 @@
+.inventory-dropdown {
+  width: 500px;
+}
+
+.custom-inventory-panel {
+  min-width: 240px !important;
+  max-width: 300px !important;
+  word-wrap: break-word;
+}

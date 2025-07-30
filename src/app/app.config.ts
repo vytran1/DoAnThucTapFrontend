@@ -30,15 +30,14 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimationsAsync(),
     provideNgxMask(),
-<<<<<<< Updated upstream
+
     {
       provide: APP_INITIALIZER,
       useFactory: appInitFactory,
       deps: [SettingService],
       multi: true,
     },
-=======
-    [provideRouter(routes), provideHttpClient()] 
->>>>>>> Stashed changes
+
+    [provideRouter(routes), provideHttpClient()],
   ],
 };

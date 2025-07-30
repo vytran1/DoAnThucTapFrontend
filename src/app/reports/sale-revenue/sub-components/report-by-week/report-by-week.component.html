@@ -1,7 +1,22 @@
 @if(loading){
 <app-loading></app-loading>
 }@else{
+<div class="filter-box">
+  @if(isAdmin){
+  <app-inventory-drop-down-list
+    (inventoryChanged)="fetchAdminData($event)"
+  ></app-inventory-drop-down-list>
+  }
 
+  <mat-form-field appearance="outline" class="filter-dropdown">
+    <mat-label>Filter by day</mat-label>
+    <mat-select [(value)]="dayFilter" (selectionChange)="applyDayFilter()">
+      <mat-option value="ALL">All days</mat-option>
+      <mat-option value="WEEKEND">Weekend only</mat-option>
+      <mat-option value="WEEKDAY">Weekdays only</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 <div class="chart-wrapper">
   <div class="chart-container">
     <ngx-charts-bar-vertical

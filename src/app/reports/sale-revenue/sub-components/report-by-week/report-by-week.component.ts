@@ -9,11 +9,23 @@ import { ReportItem } from '../../../../model/reports/report-item.model';
 import { NgxChartsModule, ScaleType } from '@swimlane/ngx-charts';
 import { Color } from '@swimlane/ngx-charts';
 import { ReportChartItem } from '../../../../model/reports/report-chart-item.model';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { InventoryDropDownListComponent } from '../../../../shared-component/inventory-drop-down-list/inventory-drop-down-list.component';
 
 @Component({
   selector: 'app-report-by-week',
   standalone: true,
-  imports: [LoadingComponent, CommonModule, NgxChartsModule],
+  imports: [
+    LoadingComponent,
+    CommonModule,
+    NgxChartsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    InventoryDropDownListComponent,
+  ],
   templateUrl: './report-by-week.component.html',
   styleUrl: './report-by-week.component.css',
 })
@@ -22,6 +34,9 @@ export class ReportByWeekComponent implements OnInit, OnDestroy {
   reportRequest: ReportRequest = {
     type: 'WEEK',
   };
+  dayFilter: 'ALL' | 'WEEKEND' | 'WEEKDAY' = 'ALL';
+  originalItems: ReportChartItem[] = [];
+  isAdmin = false;
 
   reportData: any;
   report_items: ReportChartItem[] = [];
@@ -42,8 +57,10 @@ export class ReportByWeekComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.isAdmin = this.authService.isSuperAdmin();
+
     if (this.authService.isSuperAdmin()) {
-      this.fetchAdminData();
+      this.fetchAdminData(null);
     } else if (this.authService.isDirector()) {
       this.fetchDirectorData();
     } else {
@@ -56,20 +73,22 @@ export class ReportByWeekComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
-  fetchAdminData(): void {
+  fetchAdminData(id: number | null): void {
     this.loading = true;
-    this.reportRequest.inventory_id = null; // 👈 để backend hiểu là lấy toàn bộ
+    this.reportRequest.inventory_id = id; // 👈 để backend hiểu là lấy toàn bộ
 
     const sub = this.reportService
       .fetchRevenueReportDataForAdmin(this.reportRequest)
       .subscribe({
         next: (res) => {
+          this.dayFilter = 'ALL';
           console.log(res);
 
           this.report_items = res.body.items.map((item: ReportItem) => ({
-            name: new Date(item.date).toLocaleDateString(), // hoặc format lại tùy ý
+            name: new Date(item.date).toLocaleDateString(),
             value: parseFloat(item.value),
           }));
+          this.originalItems = [...this.report_items];
           this.total = res.body.total_values;
           console.log(this.report_items);
 
@@ -93,6 +112,13 @@ export class ReportByWeekComponent implements OnInit, OnDestroy {
       .fetchRevenueReportDataForDirector(this.reportRequest)
       .subscribe({
         next: (res) => {
+          this.dayFilter = 'ALL'; // reset filter
+          this.report_items = res.body.items.map((item: ReportItem) => ({
+            name: new Date(item.date).toLocaleDateString(),
+            value: parseFloat(item.value),
+          }));
+          this.originalItems = [...this.report_items];
+          this.total = res.body.total_values;
           this.reportData = res.body;
           this.loading = false;
         },
@@ -103,5 +129,22 @@ export class ReportByWeekComponent implements OnInit, OnDestroy {
       });
 
     this.subscriptions.push(sub);
+  }
+
+  applyDayFilter(): void {
+    if (this.dayFilter === 'ALL') {
+      this.report_items = [...this.originalItems];
+    } else {
+      this.report_items = this.originalItems.filter((item) => {
+        const day = new Date(item.name).getDay(); // 0 = CN, 6 = T7
+
+        if (this.dayFilter === 'WEEKEND') {
+          return day === 0 || day === 6;
+        } else if (this.dayFilter === 'WEEKDAY') {
+          return day >= 1 && day <= 5;
+        }
+        return true;
+      });
+    }
   }
 }

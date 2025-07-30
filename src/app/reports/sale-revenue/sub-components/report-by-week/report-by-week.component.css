@@ -41,3 +41,24 @@ ngx-charts-bar-vertical {
   font-size: 26px;
   color: #1a202c;
 }
+.filter-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 8px;
+}
+
+.styled-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.styled-select:focus {
+  border-color: #38a169;
+  background-color: #fff;
+}

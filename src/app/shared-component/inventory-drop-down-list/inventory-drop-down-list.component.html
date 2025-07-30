@@ -1,0 +1,13 @@
+<mat-form-field appearance="outline" class="inventory-dropdown">
+  <mat-label>Warehouse</mat-label>
+  <mat-select
+    [(ngModel)]="selectedInventoryId"
+    (selectionChange)="onSelectionChange()"
+    panelClass="custom-inventory-panel"
+  >
+    <mat-option [value]="null">All Warehouses</mat-option>
+    <mat-option *ngFor="let inv of inventoryList" [value]="inv.id">
+      {{ inv.inventory_code }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

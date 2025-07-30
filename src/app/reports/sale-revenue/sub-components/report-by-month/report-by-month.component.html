@@ -1,1 +1,41 @@
-<p>report-by-month works!</p>
+@if(loading){
+<app-loading></app-loading>
+}@else{
+<div class="filter-box">
+  @if(isAdmin){
+  <app-inventory-drop-down-list
+    (inventoryChanged)="fetchAdminData($event)"
+  ></app-inventory-drop-down-list>
+  }
+
+  <mat-form-field appearance="outline" class="filter-dropdown">
+    <mat-label>Filter</mat-label>
+    <mat-select [(value)]="monthFilter" (selectionChange)="applyMonthFilter()">
+      <mat-option value="ALL">Entire Month</mat-option>
+      <mat-option value="FIRST_HALF">First Half (1–15)</mat-option>
+      <mat-option value="SECOND_HALF">Second Half (16–31)</mat-option>
+      <mat-option value="FOUR_WEEKS">Last 4 Weeks</mat-option>
+      <mat-option value="LAST_30_DAYS">Last 30 Days</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="chart-wrapper">
+  <div class="chart-container">
+    <ngx-charts-bar-vertical
+      [results]="report_items"
+      [scheme]="colorScheme"
+      [xAxis]="true"
+      [yAxis]="true"
+      [legend]="false"
+      [showDataLabel]="true"
+      [animations]="true"
+    >
+    </ngx-charts-bar-vertical>
+  </div>
+
+  <div class="total-value-box">
+    <span class="label">TOTAL VALUE:</span>
+    <span class="value">{{ total | number : "1.0-2" }}</span>
+  </div>
+</div>
+}
