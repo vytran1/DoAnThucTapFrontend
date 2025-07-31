@@ -82,7 +82,7 @@ export class ReportByMonthComponent implements OnInit, OnDestroy {
 
   fetchAdminData(id: number | null): void {
     this.loading = true;
-    this.reportRequest.inventory_id = id; // 👈 để backend hiểu là lấy toàn bộ
+    this.reportRequest.inventory_id = id;
 
     const sub = this.reportService
       .fetchRevenueReportDataForAdmin(this.reportRequest)
@@ -119,7 +119,7 @@ export class ReportByMonthComponent implements OnInit, OnDestroy {
       .fetchRevenueReportDataForDirector(this.reportRequest)
       .subscribe({
         next: (res) => {
-          this.monthFilter = 'ALL'; // reset filter
+          this.monthFilter = 'ALL';
           this.report_items = res.body.items.map((item: ReportItem) => ({
             name: new Date(item.date).toLocaleDateString(),
             value: parseFloat(item.value),

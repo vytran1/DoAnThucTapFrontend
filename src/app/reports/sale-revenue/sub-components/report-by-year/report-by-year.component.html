@@ -1,0 +1,49 @@
+@if(loading){
+<app-loading></app-loading>
+}@else{
+<div class="filter-box">
+  @if(isAdmin){
+  <app-inventory-drop-down-list
+    (inventoryChanged)="fetchAdminData($event)"
+  ></app-inventory-drop-down-list>
+  }
+
+  <mat-form-field appearance="outline" class="filter-dropdown">
+    <mat-label>Filter</mat-label>
+    <mat-select
+      [(value)]="yearFilter"
+      (selectionChange)="onFilterChange($event)"
+    >
+      <mat-option value="ALL">All 12 months</mat-option>
+      <mat-option value="FIRST_HALF">First 6 months</mat-option>
+      <mat-option value="SECOND_HALF">Last 6 months</mat-option>
+      <mat-option value="SPRING">Spring (Jan-Mar)</mat-option>
+      <mat-option value="SUMMER">Summer (Apr-Jun)</mat-option>
+      <mat-option value="AUTUMN">Autumn (Jul-Oct)</mat-option>
+      <mat-option value="WINTER">Winter (Nov-Dec)</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div class="chart-wrapper">
+  <div class="chart-container">
+    <canvas
+      baseChart
+      [data]="barChartData"
+      [options]="barChartOptions"
+      [type]="barChartType"
+      style="
+        width: 100%;
+        max-width: 900px;
+        height: 100%;
+        display: block;
+        margin: 0 auto;
+      "
+    ></canvas>
+  </div>
+
+  <div class="total-value-box">
+    <span class="label">TOTAL VALUE:</span>
+    <span class="value">{{ total | number : "1.0-2" }}</span>
+  </div>
+</div>
+}

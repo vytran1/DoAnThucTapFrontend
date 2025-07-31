@@ -22,6 +22,8 @@
     "@angular/router": "^18.0.0",
     "@auth0/angular-jwt": "^5.2.0",
     "@swimlane/ngx-charts": "^23.0.0-alpha.0",
+    "chart.js": "^4.4.0",
+    "ng2-charts": "^6.0.1",
     "ngx-mask": "^20.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

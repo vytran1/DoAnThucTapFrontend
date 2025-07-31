@@ -1,0 +1,88 @@
+/* Trong file report-by-half-year.component.css */
+
+.chart-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* căn giữa ngang */
+  gap: 30px;
+}
+
+.chart-container {
+  width: 100%;
+  max-width: 900px; /* Thêm dòng này để giới hạn chiều rộng */
+  margin: 0 auto; /* Căn giữa */
+  height: 400px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+
+/* Xóa bỏ quy tắc này vì ngx-charts-bar-vertical không còn được sử dụng */
+/* ngx-charts-bar-vertical {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+} */
+
+/* Phần hiển thị TOTAL VALUE */
+.total-value-box {
+  padding: 20px 30px;
+  background-color: #e6ffed;
+  border: 2px solid #2f855a;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2f855a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 350px;
+  width: fit-content; /* Điều chỉnh để hộp tổng giá trị không quá rộng */
+}
+
+.total-value-box .label {
+  text-transform: uppercase;
+}
+
+.total-value-box .value {
+  font-size: 26px;
+  color: #1a202c;
+}
+
+.filter-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 8px;
+  /* Nếu bạn muốn căn giữa hoặc căn phải/trái giống chart-wrapper */
+  width: 100%;
+  justify-content: center; /* Ví dụ: căn giữa các bộ lọc */
+  /* Hoặc justify-content: flex-end; */
+}
+
+/* .filter-dropdown là một MatFormField, không phải select thông thường */
+/* Loại bỏ .styled-select vì MatSelect đã có styling riêng của Material */
+/* .styled-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.styled-select:focus {
+  border-color: #38a169;
+  background-color: #fff;
+} */
+
+/* Bạn có thể thêm các style tùy chỉnh cho MatFormField và MatSelect nếu muốn,
+   ví dụ: để điều chỉnh độ rộng của dropdown */
+.filter-dropdown {
+  min-width: 150px; /* Đảm bảo đủ rộng cho text */
+  /* Các style khác cho Material component */
+}

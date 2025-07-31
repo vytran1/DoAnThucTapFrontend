@@ -22,7 +22,8 @@ export const authInterceptor: HttpInterceptorFn = (
   if (
     req.url.includes(`${hostUrl}/api/auth/token`) ||
     req.url.includes(`${hostUrl}/api/forgot_password`) ||
-    req.url.includes(`${hostUrl}/api/reset_password`)
+    req.url.includes(`${hostUrl}/api/reset_password`) ||
+    req.url.includes(`${hostUrl}/api/setting`)
   ) {
     return next(req);
   }
