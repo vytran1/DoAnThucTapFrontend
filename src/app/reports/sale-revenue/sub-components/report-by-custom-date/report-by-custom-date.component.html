@@ -1,0 +1,61 @@
+@if(loading){
+<app-loading></app-loading>
+}@else{
+<div class="report-container">
+  <div class="filter-box">
+    @if(isAdmin){
+    <app-inventory-drop-down-list
+      (inventoryChanged)="fetchData($event)"
+    ></app-inventory-drop-down-list>
+    }
+
+    <mat-form-field appearance="outline" class="date-input">
+      <mat-label>Start Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="startDatePicker"
+        [(ngModel)]="startDate"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="startDatePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="date-input">
+      <mat-label>End Date</mat-label>
+      <input matInput [(ngModel)]="endDate" [disabled]="true" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter-dropdown">
+      <mat-label>Group By</mat-label>
+      <mat-select [(value)]="groupBy">
+        <mat-option value="DAY">By Day</mat-option>
+        <mat-option value="MONTH">By Month</mat-option>
+        <mat-option value="YEAR">By Year</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" (click)="onApplyFilter()">
+      <mat-icon>filter_alt</mat-icon> Apply Filter
+    </button>
+  </div>
+
+  <div class="main-content-wrapper">
+    <div class="chart-container">
+      <canvas
+        baseChart
+        [data]="barChartData"
+        [options]="barChartOptions"
+        [type]="barChartType"
+      ></canvas>
+    </div>
+
+    <div class="total-value-box">
+      <span class="label">TOTAL VALUE:</span>
+      <span class="value">{{ total | number : "1.0-2" }} VND</span>
+    </div>
+  </div>
+</div>
+}

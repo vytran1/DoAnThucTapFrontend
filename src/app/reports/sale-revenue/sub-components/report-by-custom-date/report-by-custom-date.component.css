@@ -1,0 +1,93 @@
+.report-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 20px;
+}
+
+.filter-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 16px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.date-input {
+  min-width: 180px;
+}
+
+.filter-dropdown {
+  min-width: 150px;
+}
+
+.main-content-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.chart-container {
+  flex-grow: 1;
+  height: 400px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  min-width: 300px;
+}
+
+.total-value-box {
+  padding: 20px 30px;
+  background-color: #e6ffed;
+  border: 2px solid #2f855a;
+  border-radius: 12px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #2f855a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-width: 250px;
+  width: fit-content;
+  align-self: center;
+  height: 100%;
+}
+
+.total-value-box .label {
+  text-transform: uppercase;
+}
+
+.total-value-box .value {
+  font-size: 26px;
+  color: #1a202c;
+  word-break: break-all;
+}
+
+mat-raised-button {
+  height: 56px; /* Match the height of mat-form-field */
+  padding: 0 24px;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .main-content-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .total-value-box {
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+  }
+}

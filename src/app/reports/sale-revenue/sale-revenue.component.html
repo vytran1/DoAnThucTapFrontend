@@ -10,8 +10,7 @@
 
 <div class="tab-content-container" [ngSwitch]="selectedTabIndex">
   <div *ngSwitchCase="0">
-    <h2>Custom Report</h2>
-    <p>Select start and end dates to generate a custom report.</p>
+    <app-report-by-custom-date></app-report-by-custom-date>
   </div>
   <div *ngSwitchCase="1">
     <app-report-by-week></app-report-by-week>
