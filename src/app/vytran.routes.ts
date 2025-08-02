@@ -21,6 +21,7 @@ import { inventoryGuard } from './guards/inventory.guard';
 import { inventoryChildGuard } from './guards/inventory-child.guard';
 
 import { InventoryEditComponent } from './inventory-management/inventory-edit.component';
+import { StockingRevenueComponent } from './reports/stocking-revenue/stocking-revenue.component';
 
 export const inventoryRoutes: Routes = [
   {
@@ -92,6 +93,10 @@ export const inventoryRoutes: Routes = [
       {
         path: 'report/sales-revenue',
         component: SaleRevenueComponent,
+      },
+      {
+        path: 'report/stock-revenue',
+        component: StockingRevenueComponent,
       },
     ],
   },

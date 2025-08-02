@@ -27,6 +27,7 @@ export class InventoryDropDownListComponent implements OnInit, OnDestroy {
   selectedInventoryId: number | null = null;
 
   @Output() inventoryChanged = new EventEmitter<number>();
+  @Output() allInventory = new EventEmitter<number>();
 
   constructor(private inventoryService: VinventoryService) {}
 
@@ -47,6 +48,8 @@ export class InventoryDropDownListComponent implements OnInit, OnDestroy {
   onSelectionChange(): void {
     if (this.selectedInventoryId !== null) {
       this.inventoryChanged.emit(this.selectedInventoryId);
+    } else {
+      this.allInventory.emit(0);
     }
   }
 }

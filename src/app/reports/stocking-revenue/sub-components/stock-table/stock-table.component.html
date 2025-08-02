@@ -1,0 +1,82 @@
+@if(dataSource.data.length > 0){
+
+<mat-card class="stock-table-container">
+  <div class="table-toolbar">
+    <mat-form-field appearance="outline" class="threshold-input">
+      <mat-label>Low Stock Threshold</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="lowStockThreshold"
+        (ngModelChange)="onThresholdChange()"
+      />
+    </mat-form-field>
+
+    <mat-button-toggle-group
+      [value]="filterOption"
+      (change)="onFilterChange($event.value)"
+      appearance="standard"
+    >
+      <mat-button-toggle value="ALL">All</mat-button-toggle>
+      <mat-button-toggle value="LOW">Low</mat-button-toggle>
+      <mat-button-toggle value="NORMAL">Normal</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <div class="table-scroll-wrapper">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+      <!-- Column Definitions (name, sku, quantity, values, lowStock) -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="sku">
+        <th mat-header-cell *matHeaderCellDef>SKU</th>
+        <td mat-cell *matCellDef="let row">{{ row.sku }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let row">{{ row.quantity }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="values">
+        <th mat-header-cell *matHeaderCellDef>Values</th>
+        <td mat-cell *matCellDef="let row">{{ row.values }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="lowStock">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let row">
+          <mat-icon color="warn" *ngIf="row.lowStock">warning</mat-icon>
+          <mat-icon color="primary" *ngIf="!row.lowStock"
+            >check_circle</mat-icon
+          >
+        </td>
+      </ng-container>
+
+      <!-- Table Header & Rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        [ngClass]="getRowClass(row)"
+      ></tr>
+    </table>
+
+    <!-- Empty message -->
+    <div class="no-data" *ngIf="dataSource.data.length === 0">
+      No Items Found
+    </div>
+  </div>
+
+  <!-- Total -->
+  <div class="total-container">
+    <strong>Total Values:</strong> {{ totalValues }}
+  </div>
+</mat-card>
+
+}@else{
+<span>No Items Found</span>
+}

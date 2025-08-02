@@ -1,1 +1,37 @@
-<p>stocking-revenue works!</p>
+@if(isLoading){
+<app-loading></app-loading>
+}@else {
+
+<mat-card class="section-container">
+  <div class="stocking-header">
+    <!-- Director -->
+    <div *ngIf="isDirector" class="header-content">
+      <span class="header-title">Stock Revenue Of Inventory</span>
+      <span class="highlight">{{ inventoryCode }}</span>
+    </div>
+
+    <!-- Super Admin -->
+    <div *ngIf="isSuperAdmin" class="header-content">
+      <span class="header-title">Stock Revenue Of</span>
+      <app-inventory-drop-down-list
+        (inventoryChanged)="onSelectionChange($event)"
+        (allInventory)="selectAll($event)"
+      ></app-inventory-drop-down-list>
+    </div>
+
+    <mat-card class="section-container stock-table-wrapper">
+      <app-stock-table
+        [data]="stockings"
+        [totalValues]="totalValues"
+      ></app-stock-table>
+      <app-page-num
+        class="pagination-wrapper"
+        [currentPage]="pageNum"
+        [pageSize]="pageSize"
+        [totalItems]="totalItems"
+        (pageChange)="onPageChangeEvent($event)"
+      ></app-page-num>
+    </mat-card>
+  </div>
+</mat-card>
+}

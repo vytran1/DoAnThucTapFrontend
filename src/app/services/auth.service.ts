@@ -71,7 +71,28 @@ export class AuthService {
 
       if (sub) {
         const parts = sub.split(',');
-        return parts[0] || null; // 👈 phần tử thứ 3 (index 2)
+        return parts[0] || null;
+      }
+    }
+
+    return null;
+  }
+
+  public getInventoryId(): number | null {
+    const token = this.getToken();
+
+    if (token) {
+      const payload = this.jwtHelper.decodeToken(token);
+      const sub = payload?.sub;
+
+      if (sub) {
+        const parts = sub.split(',');
+        const inventoryIdStr = parts[3]; // 👈 phần tử cuối
+
+        if (inventoryIdStr) {
+          const inventoryId = parseInt(inventoryIdStr, 10);
+          return isNaN(inventoryId) ? null : inventoryId;
+        }
       }
     }
 

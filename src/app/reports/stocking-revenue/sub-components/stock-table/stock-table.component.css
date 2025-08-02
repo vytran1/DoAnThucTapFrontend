@@ -1,0 +1,50 @@
+.stock-table-container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.table-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff;
+  padding-bottom: 8px;
+}
+
+.threshold-input {
+  width: 200px;
+}
+
+.table-scroll-wrapper {
+  max-height: 500px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.low-stock-row {
+  background-color: #ffe6e6; /* light red */
+}
+
+.normal-stock-row {
+  background-color: #e6ffe6; /* light green */
+}
+
+.total-container {
+  text-align: right;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.no-data {
+  padding: 16px;
+  text-align: center;
+  color: #888;
+  font-style: italic;
+}
