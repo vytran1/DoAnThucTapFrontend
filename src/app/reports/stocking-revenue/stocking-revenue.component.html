@@ -34,4 +34,19 @@
     </mat-card>
   </div>
 </mat-card>
+<mat-card class="section-container trend-card">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon color="primary">trending_up</mat-icon>
+      <span class="trend-title">Import vs. Selling Trend</span>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <app-trend-chart
+      [importingData]="importingData"
+      [sellingData]="sellingData"
+    ></app-trend-chart>
+  </mat-card-content>
+</mat-card>
 }

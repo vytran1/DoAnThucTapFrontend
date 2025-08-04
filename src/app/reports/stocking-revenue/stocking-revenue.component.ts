@@ -7,12 +7,15 @@ import { InventoryDropDownListComponent } from '../../shared-component/inventory
 import { LoadingComponent } from '../../shared-component/loading/loading.component';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { StockTableComponent } from './sub-components/stock-table/stock-table.component';
 import { PageNumComponent } from '../../shared-component/page-num/page-num.component';
 import { ReportRequest } from '../../model/reports/report-request.model';
+import { ReportItem } from '../../model/reports/report-item.model';
+import { TrendChartComponent } from './sub-components/trend-chart/trend-chart.component';
 
 type TimeStrategy = 'WEEK' | 'MONTH' | 'YEAR';
 
@@ -29,6 +32,8 @@ type TimeStrategy = 'WEEK' | 'MONTH' | 'YEAR';
     FormsModule,
     StockTableComponent,
     PageNumComponent,
+    MatIconModule,
+    TrendChartComponent,
   ],
   templateUrl: './stocking-revenue.component.html',
   styleUrl: './stocking-revenue.component.css',
@@ -42,6 +47,8 @@ export class StockingRevenueComponent implements OnInit, OnDestroy {
   isSuperAdmin = false;
   inventoryCode: string = '';
   selectedInventoryId: number | null = null;
+  importingData: ReportItem[] = [];
+  sellingData: ReportItem[] = [];
 
   timeStrategy: TimeStrategy = 'WEEK';
 
@@ -98,11 +105,11 @@ export class StockingRevenueComponent implements OnInit, OnDestroy {
         console.log('Importing Response', importRes);
         console.log('Sales Response', saleRes);
 
-        const importingData = importRes.body?.items || [];
-        const sellingData = saleRes.body?.items || [];
+        this.importingData = importRes.body?.items || [];
+        this.sellingData = saleRes.body?.items || [];
 
-        console.log('Importing Data', importingData);
-        console.log('Selling Data', sellingData);
+        console.log('Importing Data', this.importingData);
+        console.log('Selling Data', this.sellingData);
       },
       error: (err) => {
         console.error('Error loading import/sale report', err);

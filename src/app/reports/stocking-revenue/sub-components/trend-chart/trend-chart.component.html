@@ -1,1 +1,38 @@
-<p>trend-chart works!</p>
+@if (isLoading) {
+<app-loading></app-loading>
+}@else {
+
+<mat-card class="trend-chart-card" appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon color="primary">show_chart</mat-icon>
+      <span class="title-text">Import vs. Selling Trend</span>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div *ngIf="isLoading" class="loading-container">
+      <app-loading></app-loading>
+    </div>
+
+    <div
+      *ngIf="!isLoading && lineChartData.labels?.length"
+      class="chart-container"
+    >
+      <canvas
+        baseChart
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [type]="lineChartType"
+        [legend]="lineChartLegend"
+      ></canvas>
+    </div>
+
+    <div *ngIf="!isLoading && !lineChartData.labels?.length" class="empty-data">
+      <mat-icon color="warn">info</mat-icon>
+      No data available for the selected period.
+    </div>
+  </mat-card-content>
+</mat-card>
+
+}
