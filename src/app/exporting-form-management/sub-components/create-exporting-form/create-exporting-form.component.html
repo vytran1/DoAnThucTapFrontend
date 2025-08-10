@@ -1,0 +1,159 @@
+<div class="form-container">
+  <div class="form-header">
+    <div class="dropdown-row">
+      <!-- Transporter -->
+      <div class="dropdown-container">
+        <app-transporter-drop-down-list
+          (eventEmitter)="onTransporterSelected($event)"
+        ></app-transporter-drop-down-list>
+
+        <div class="error-text" *ngIf="selectedTransporterId == null">
+          Please choose at least one transporter
+        </div>
+      </div>
+
+      <!-- Inventory -->
+      <div class="dropdown-container">
+        <app-inventory-drop-down-list
+          [isNeedToIgnoreInventoryOfCurrentLoggedUser]="true"
+          (inventoryChanged)="onInventorySelected($event)"
+          (allInventory)="onAllInventorySelected($event)"
+        ></app-inventory-drop-down-list>
+
+        <div class="error-text" *ngIf="selectedInventoryId == null">
+          Please choose at least one warehouse
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isOpenSearchProductTable" class="modal-backdrop">
+    <app-search-variant-table
+      (addToCart)="onProductAdded($event)"
+      (close)="closeSearchProductTable()"
+    ></app-search-variant-table>
+  </div>
+  <div class="form-body">
+    <div class="form-body-header">
+      <button
+        mat-raised-button
+        class="mat-button-friendly"
+        type="button"
+        (click)="openSearchProductTable()"
+      >
+        Add Product
+      </button>
+    </div>
+    <form [formGroup]="form">
+      <table *ngIf="detailArray.length > 0" class="full-width">
+        <thead>
+          <tr>
+            <th>SKU</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody formArrayName="details">
+          <tr
+            *ngFor="let group of detailArray.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <td>{{ group.get("sku")?.value }}</td>
+            <td>{{ group.get("name")?.value }}</td>
+            <td class="quantity-cell">
+              <button
+                type="button"
+                class="qty-btn"
+                (click)="
+                  group
+                    .get('quantity')
+                    ?.setValue(group.get('quantity')?.value - 1)
+                "
+                [disabled]="group.get('quantity')?.value <= 1"
+              >
+                -
+              </button>
+
+              <input
+                type="number"
+                formControlName="quantity"
+                class="qty-input"
+              />
+
+              <button
+                type="button"
+                class="qty-btn"
+                (click)="
+                  group
+                    .get('quantity')
+                    ?.setValue(group.get('quantity')?.value + 1)
+                "
+                [disabled]="
+                  group.get('quantity')?.value >=
+                  group.get('maxQuantity')?.value
+                "
+              >
+                +
+              </button>
+
+              <span class="max-info"
+                >/ {{ group.get("maxQuantity")?.value }}</span
+              >
+            </td>
+            <td>
+              <button
+                type="button"
+                mat-button
+                color="warn"
+                (click)="removeDetail(i)"
+              >
+                Remove
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  <div class="form-footer">
+    <button
+      mat-raised-button
+      color="primary"
+      class="footer-btn submit-btn"
+      type="button"
+      (click)="openWarningModal()"
+      [disabled]="
+        selectedInventoryId == null ||
+        selectedTransporterId == null ||
+        form.invalid
+      "
+    >
+      Submit
+    </button>
+
+    <button
+      mat-stroked-button
+      color="warn"
+      class="footer-btn cancel-btn"
+      type="button"
+      (click)="form.reset(); detailArray.clear()"
+    >
+      Cancel
+    </button>
+  </div>
+  @if(isOpenMessageModal){
+  <app-message-modal
+    [title]="title"
+    [message]="message"
+    (closed)="onCloseMessageModal()"
+  ></app-message-modal>
+  }
+  <app-warning-modal
+    [visible]="isOpenWarningModal"
+    [title]="title"
+    [message]="message"
+    (cancel)="onCloseWarningModal()"
+    (confirm)="onSubmit()"
+  >
+  </app-warning-modal>
+</div>

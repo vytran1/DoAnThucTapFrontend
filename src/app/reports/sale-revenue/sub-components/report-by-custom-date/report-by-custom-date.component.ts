@@ -246,9 +246,15 @@ export class ReportByCustomDateComponent implements OnInit, OnDestroy {
           }),
           value: totalValue,
           invoiceCount: itemCounts,
+          sortKey: { year, month },
         };
       })
-      .sort((a, b) => a.name.localeCompare(b.name));
+      .sort((a, b) => {
+        if (a.sortKey.year !== b.sortKey.year) {
+          return a.sortKey.year - b.sortKey.year;
+        }
+        return a.sortKey.month - b.sortKey.month;
+      });
   }
 
   private _groupItemsByYear(items: ReportItem[]): ReportChartItem[] {

@@ -1,0 +1,312 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 24px;
+  height: calc(100vh - 64px); /* nếu có header bên trên */
+  box-sizing: border-box;
+}
+
+/* Cả header và body đều có nền trắng */
+.form-header {
+  background-color: #ffffff; /* Đổi thành trắng */
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* canh trái */
+}
+
+.form-body {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+}
+.error-text {
+  color: red;
+  font-size: 14px;
+  margin-top: 8px;
+}
+.form-header {
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.dropdown-container {
+  display: flex;
+  flex-direction: column; /* để lỗi nằm dưới */
+  align-items: flex-start; /* canh trái */
+  gap: 4px;
+}
+
+.error-text {
+  color: red;
+  font-size: 14px;
+  margin-left: 4px;
+}
+.dropdown-row {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.dropdown-row {
+  display: flex;
+  flex-direction: column; /* đổi từ row sang column */
+  gap: 16px; /* khoảng cách giữa 2 dropdown */
+}
+.form-body-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+.mat-button-friendly {
+  background-color: #82b1ff; /* màu accent nhẹ */
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.mat-button-friendly:hover {
+  background-color: #448aff; /* accent đậm hơn khi hover */
+  color: white;
+}
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+th,
+td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+/* Table styling cải tiến */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+}
+
+th {
+  background-color: #f5f5f5;
+  text-align: left;
+  padding: 12px;
+  font-weight: 600;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+td {
+  padding: 12px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+tr {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Quantity input */
+.quantity-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.qty-input {
+  width: 50px;
+  text-align: center;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fafafa;
+  font-weight: 600;
+}
+
+.qty-btn {
+  background-color: #e0e0e0;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.qty-btn:hover {
+  background-color: #c0c0c0;
+}
+
+.max-info {
+  font-size: 13px;
+  color: #777;
+  font-weight: 500;
+}
+/* Table wrapper */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Header */
+th {
+  background-color: #eef3f9;
+  text-align: left;
+  padding: 14px 16px;
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+}
+
+/* Body */
+td {
+  background-color: #ffffff;
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #444;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+/* Cuối bảng không có border */
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* Quantity cell */
+.quantity-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Input number đẹp hơn */
+.qty-input {
+  width: 60px;
+  height: 38px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f0f4f8;
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.qty-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #90caf9;
+}
+
+/* Button + - to, đẹp, mượt */
+.qty-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  background-color: #e3f2fd;
+  color: #1e88e5;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.qty-btn:disabled {
+  background-color: #eeeeee;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.qty-btn:hover:not(:disabled) {
+  background-color: #bbdefb;
+}
+
+.max-info {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+.qty-input {
+  width: 100px;
+  height: 38px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f0f4f8;
+  transition: box-shadow 0.2s ease-in-out;
+}
+.form-body {
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  max-height: none;
+}
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 12px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer-btn {
+  padding: 10px 24px;
+  font-size: 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.submit-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.submit-btn:hover {
+  background-color: #388e3c;
+}
+
+.cancel-btn {
+  border-color: #e57373;
+  color: #e57373;
+}
+
+.cancel-btn:hover {
+  background-color: #ffebee;
+}

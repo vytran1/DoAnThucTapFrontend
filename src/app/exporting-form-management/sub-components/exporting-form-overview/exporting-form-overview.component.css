@@ -1,0 +1,45 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+}
+
+mat-card {
+  padding: 16px;
+}
+
+.general-info-card .info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.info-key {
+  font-weight: 600;
+  color: #555;
+}
+
+.info-value {
+  color: #222;
+}
+
+.details-card table {
+  width: 100%;
+  margin-top: 10px;
+}
+.not-commit {
+  color: #0d47a1; /* xanh dương đậm nhưng dịu */
+  font-weight: bold;
+  background-color: #e3f2fd; /* xanh dương nhạt */
+  padding: 2px 6px;
+  border-radius: 4px;
+}

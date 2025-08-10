@@ -1,0 +1,81 @@
+@if(isLoading){
+<app-loading></app-loading>
+@if(isOpenMessageModal){
+<app-message-modal
+  [title]="title"
+  [message]="message"
+  (closed)="closeMessageModal()"
+></app-message-modal>
+} }@else {
+
+<div class="form-container">
+  <!-- General Information -->
+  <mat-card class="general-info-card">
+    <mat-card-title>General Information</mat-card-title>
+    <mat-divider></mat-divider>
+    <div class="info-grid">
+      <div class="info-row">
+        <span class="info-key">Form Code:</span>
+        <span class="info-value">{{ exportingForm.code }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Move From Inventory:</span>
+        <span class="info-value">{{
+          exportingForm.inventory_move_from_code
+        }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Move To Inventory:</span>
+        <span class="info-value">{{
+          exportingForm.inventory_move_to_code
+        }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Create Employee:</span>
+        <span class="info-value">{{ exportingForm.create_employee }}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Commit Employee:</span>
+        <span
+          class="info-value"
+          [ngClass]="{ 'not-commit': !exportingForm.commit_employee }"
+        >
+          {{ exportingForm.commit_employee || "NOT COMMIT" }}
+        </span>
+      </div>
+      <div class="info-row">
+        <span class="info-key">Transporter Code:</span>
+        <span class="info-value">{{ exportingForm.transporter_code }}</span>
+      </div>
+    </div>
+  </mat-card>
+
+  <!-- Form Details -->
+  <mat-card class="details-card">
+    <mat-card-title>Form Details</mat-card-title>
+    <mat-divider></mat-divider>
+
+    <table
+      mat-table
+      [dataSource]="exportingForm.details"
+      class="mat-elevation-z2"
+    >
+      <!-- SKU Column -->
+      <ng-container matColumnDef="sku">
+        <th mat-header-cell *matHeaderCellDef>SKU</th>
+        <td mat-cell *matCellDef="let element">{{ element.sku }}</td>
+      </ng-container>
+
+      <!-- Quantity Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef>Quantity</th>
+        <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-card>
+</div>
+
+}

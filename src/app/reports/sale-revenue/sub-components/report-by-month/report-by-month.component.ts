@@ -167,8 +167,8 @@ export class ReportByMonthComponent implements OnInit, OnDestroy {
     }
 
     const today = new Date();
-    const thisMonth = today.getMonth();
-    const thisYear = today.getFullYear();
+    // const thisMonth = today.getMonth();
+    // const thisYear = today.getFullYear();
 
     if (this.monthFilter === 'ALL') {
       this.report_items = [...this.originalItems];

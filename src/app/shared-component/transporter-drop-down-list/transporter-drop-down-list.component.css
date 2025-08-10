@@ -1,0 +1,18 @@
+.transporter-dropdown {
+  width: 100%;
+  max-width: 300px;
+  margin: 12px auto;
+  display: block;
+}
+
+mat-form-field {
+  background: #fff;
+  border-radius: 6px;
+}
+
+mat-select {
+  font-weight: 500;
+}
+.transporter-dropdown {
+  width: 300px; /* Hoặc 350px, tùy bạn */
+}

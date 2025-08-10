@@ -22,6 +22,8 @@ import { inventoryChildGuard } from './guards/inventory-child.guard';
 
 import { InventoryEditComponent } from './inventory-management/inventory-edit.component';
 import { StockingRevenueComponent } from './reports/stocking-revenue/stocking-revenue.component';
+import { CreateExportingFormComponent } from './exporting-form-management/sub-components/create-exporting-form/create-exporting-form.component';
+import { ExportingFormDetailComponent } from './exporting-form-management/sub-components/exporting-form-detail/exporting-form-detail.component';
 
 export const inventoryRoutes: Routes = [
   {
@@ -97,6 +99,14 @@ export const inventoryRoutes: Routes = [
       {
         path: 'report/stock-revenue',
         component: StockingRevenueComponent,
+      },
+      {
+        path: 'create-exporting-form',
+        component: CreateExportingFormComponent,
+      },
+      {
+        path: 'exporting-form/:formId',
+        component: ExportingFormDetailComponent,
       },
     ],
   },

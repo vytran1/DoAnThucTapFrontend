@@ -1,0 +1,16 @@
+@if (isLoading) {
+<app-loading></app-loading>
+}@else {
+<mat-form-field appearance="outline" class="transporter-dropdown">
+  <mat-label>Select Transporter</mat-label>
+  <mat-select
+    [(ngModel)]="selectedTransporterId"
+    (selectionChange)="onSelectionChange()"
+  >
+    <mat-option [value]="null">-- None Selected --</mat-option>
+    <mat-option *ngFor="let option of transporterOptions" [value]="option.id">
+      {{ option.code }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+}

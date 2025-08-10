@@ -1,0 +1,135 @@
+/* create-exporting-form.component.css */
+
+/* Container chung cho trang, giúp dễ quản lý layout */
+.page-container {
+  padding: 1.5rem;
+  background-color: #f4f7fa; /* Màu nền nhẹ nhàng cho cả trang */
+}
+
+/* Card chính chứa timeline */
+.status-card {
+  background-color: #ffffff;
+  border-radius: 16px; /* Bo góc mềm mại hơn */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Shadow tinh tế hơn */
+  padding: 1.5rem 2rem;
+  border: 1px solid #eef2f7;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #334155; /* Màu chữ tối, không quá đen */
+  margin-bottom: 2rem; /* Tăng khoảng cách với nội dung */
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1rem;
+}
+
+/* Container cho toàn bộ timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Mỗi mục trong timeline */
+.timeline-item {
+  display: flex;
+  position: relative;
+  padding-bottom: 2.5rem; /* Tăng khoảng cách giữa các item */
+}
+
+/* Xóa padding-bottom cho item cuối cùng */
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+/* Marker (chấm tròn và đường kẻ) */
+.timeline-marker {
+  position: absolute;
+  left: 6px;
+  top: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.timeline-marker-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #cbd5e1; /* Màu mặc định cho các chấm */
+  border: 3px solid #f8fafc;
+  z-index: 2;
+  transition: background-color 0.3s ease;
+}
+
+.timeline-marker-line {
+  width: 2px;
+  height: 100%;
+  background-color: #e2e8f0; /* Màu đường kẻ */
+  z-index: 1;
+}
+
+/* Nội dung của mỗi mục */
+.timeline-content {
+  padding-left: 40px; /* Tạo khoảng cách với marker */
+  width: 100%;
+  padding-top: 0;
+}
+
+/* Header chứa tên và mô tả status */
+.status-header {
+  margin-bottom: 0.5rem;
+}
+
+.status-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.status-description {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 4px 0 0 0;
+  line-height: 1.5;
+}
+
+/* Thông tin phụ (ngày giờ, người cập nhật) */
+.status-meta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Tăng khoảng cách giữa ngày giờ và người cập nhật */
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.meta-icon {
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  color: #94a3b8;
+}
+
+/* Style cho trạng thái mới nhất */
+.timeline-item.latest .timeline-marker-dot {
+  background-color: #3b82f6; /* Màu xanh dương hiện đại */
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2); /* Hiệu ứng tỏa sáng */
+}
+
+.timeline-item.latest .status-name {
+  color: #3b82f6;
+}
+
+/* Hiệu ứng khi hover */
+.timeline-item:not(.latest):hover .timeline-marker-dot {
+  background-color: #94a3b8;
+}

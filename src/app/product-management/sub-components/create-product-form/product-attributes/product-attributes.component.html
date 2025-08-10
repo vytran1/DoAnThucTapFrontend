@@ -24,7 +24,6 @@
             [matChipInputFor]="chipGrid"
             [formControl]="getControl(attr, 'newValueInput')"
             (keydown.enter)="addValue(i); $event.preventDefault()"
-            (keydown.space)="addValue(i); $event.preventDefault()"
           />
         </mat-chip-grid>
       </mat-form-field>

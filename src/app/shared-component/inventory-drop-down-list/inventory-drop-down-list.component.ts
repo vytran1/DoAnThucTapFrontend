@@ -1,6 +1,7 @@
 import {
   Component,
   EventEmitter,
+  Input,
   OnDestroy,
   OnInit,
   Output,
@@ -26,19 +27,32 @@ export class InventoryDropDownListComponent implements OnInit, OnDestroy {
   inventoryList: InventorySearchModel[] = [];
   selectedInventoryId: number | null = null;
 
+  @Input()
+  isNeedToIgnoreInventoryOfCurrentLoggedUser = false;
+
   @Output() inventoryChanged = new EventEmitter<number>();
   @Output() allInventory = new EventEmitter<number>();
 
   constructor(private inventoryService: VinventoryService) {}
 
   ngOnInit(): void {
-    this.subscriptions.push(
-      this.inventoryService
-        .getInventoriesDropDownList()
-        .subscribe((response) => {
-          this.inventoryList = response.body;
-        })
-    );
+    if (this.isNeedToIgnoreInventoryOfCurrentLoggedUser) {
+      this.subscriptions.push(
+        this.inventoryService
+          .getInventoriesIgnoreThatOfCurrentLoggedUser()
+          .subscribe((response) => {
+            this.inventoryList = response.body;
+          })
+      );
+    } else {
+      this.subscriptions.push(
+        this.inventoryService
+          .getInventoriesDropDownList()
+          .subscribe((response) => {
+            this.inventoryList = response.body;
+          })
+      );
+    }
   }
 
   ngOnDestroy(): void {

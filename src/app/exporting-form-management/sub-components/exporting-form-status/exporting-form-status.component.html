@@ -1,0 +1,46 @@
+@if(isLoading){
+<app-loading></app-loading>
+}@else {
+<div class="page-container">
+  <mat-card class="status-card">
+    <mat-card-title class="card-title">Status History</mat-card-title>
+    <mat-card-content>
+      <div class="timeline">
+        <!-- Lặp qua các status -->
+        @for (item of statuses; track item; let i = $index; let isFirst =
+        $first) {
+        <div class="timeline-item" [class.latest]="isFirst">
+          <!-- Timeline Marker (Dot and Line) -->
+          <div class="timeline-marker">
+            <div class="timeline-marker-dot"></div>
+            @if (i < statuses.length - 1) {
+            <div class="timeline-marker-line"></div>
+            }
+          </div>
+
+          <!-- Timeline Content -->
+          <div class="timeline-content">
+            <div class="status-header">
+              <span class="status-name">{{ item.status.toUpperCase() }}</span>
+              <p class="status-description">{{ item.description }}</p>
+            </div>
+            <div class="status-meta">
+              <!-- Icon cho ngày giờ -->
+              <div class="meta-item">
+                <mat-icon class="meta-icon">event</mat-icon>
+                <span>{{ item.created_at | date : "dd/MM/yyyy HH:mm" }}</span>
+              </div>
+              <!-- Icon cho người cập nhật -->
+              <div class="meta-item">
+                <mat-icon class="meta-icon">person_outline</mat-icon>
+                <span>{{ item.updater }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+}

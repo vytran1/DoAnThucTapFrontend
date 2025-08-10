@@ -1,0 +1,111 @@
+@if(isLoading){
+<app-loading></app-loading>
+}@else {
+<div class="quote-container">
+  <!-- Company Info -->
+  <mat-card class="custom-card wide-card">
+    <mat-card-header>
+      <mat-card-title>🏢 Company Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="two-column">
+        <div>
+          <strong>Company Name:</strong>
+          {{ quotePriceInformation.quote_price_date.company_name }}
+        </div>
+        <div>
+          <strong>Company Code:</strong>
+          {{ quotePriceInformation.quote_price_date.company_code }}
+        </div>
+        <div>
+          <strong>Address:</strong>
+          {{ quotePriceInformation.quote_price_date.address }}
+        </div>
+        <div>
+          <strong>Email:</strong>
+          {{ quotePriceInformation.quote_price_date.email }}
+        </div>
+        <div>
+          <strong>Phone:</strong>
+          {{ quotePriceInformation.quote_price_date.phone }}
+        </div>
+        <div>
+          <strong>Position:</strong>
+          {{ quotePriceInformation.quote_price_date.position }}
+        </div>
+        <div>
+          <strong>Quoted By:</strong>
+          {{ quotePriceInformation.quote_price_date.quoted_by }}
+        </div>
+        <div>
+          <strong>Quote Date:</strong>
+          {{ quotePriceInformation.quote_price_date.quotation_date }}
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Shipping Info -->
+  <mat-card class="custom-card wide-card">
+    <mat-card-header>
+      <mat-card-title>🚚 Shipping Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="two-column">
+        <div>
+          <strong>Total Quantity:</strong>
+          {{ quotePriceInformation.total_quantity }}
+        </div>
+        <div>
+          <strong>Total Kilometer:</strong>
+          {{ quotePriceInformation.quote_price_date.total_kilometer }} km
+        </div>
+        <div>
+          <strong>Price Per Item:</strong>
+          {{
+            quotePriceInformation.quote_price_date.price_per_item
+              | currency : "USD"
+          }}
+        </div>
+        <div>
+          <strong>Price Per Kilometer:</strong>
+          {{
+            quotePriceInformation.quote_price_date.price_per_kilometer
+              | currency : "USD"
+          }}
+        </div>
+        <div>
+          <strong>Discount:</strong>
+          {{ quotePriceInformation.quote_price_date.discount }}%
+        </div>
+
+        <div class="highlight-value">
+          <label>Total Value (Without Discount):</label>
+          <span>{{
+            quotePriceInformation.total_value_without_discount
+              | currency : "USD"
+          }}</span>
+        </div>
+
+        <div class="highlight-value important">
+          <label>Total Value (With Discount):</label>
+          <span>{{
+            quotePriceInformation.total_value_with_discount | currency : "USD"
+          }}</span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Buttons -->
+  <div class="action-buttons">
+    <button mat-raised-button color="primary">
+      <mat-icon>check_circle</mat-icon> Accept
+    </button>
+    <button mat-raised-button color="warn">
+      <mat-icon>cancel</mat-icon> Reject
+    </button>
+  </div>
+</div>
+
+}

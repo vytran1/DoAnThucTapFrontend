@@ -139,8 +139,17 @@ export class SaleOfPointComponent implements OnInit, OnDestroy {
     this.dataSource.data = this.orderDetails.controls;
   }
 
+  //Deprecated
+  // get totalTax(): number {
+  //   return this.totalQuantity * 1;
+  // }
+
   get totalTax(): number {
-    return this.totalQuantity * 1;
+    return this.orderDetails.controls.reduce((sum, group: any) => {
+      const price = group.value.cost_price || 0;
+      const qty = group.value.quantity || 0;
+      return sum + price * qty * 0.1;
+    }, 0);
   }
 
   get totalPrice(): number {

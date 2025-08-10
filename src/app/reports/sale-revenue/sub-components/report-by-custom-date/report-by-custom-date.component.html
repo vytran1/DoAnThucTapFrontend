@@ -25,7 +25,12 @@
 
     <mat-form-field appearance="outline" class="date-input">
       <mat-label>End Date</mat-label>
-      <input matInput [(ngModel)]="endDate" [disabled]="true" />
+      <input matInput [matDatepicker]="endDatePicker" [(ngModel)]="endDate" />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="endDatePicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="filter-dropdown">

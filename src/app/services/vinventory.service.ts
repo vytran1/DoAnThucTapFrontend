@@ -16,4 +16,12 @@ export class VinventoryService {
       observe: 'response',
     });
   }
+
+  public getInventoriesIgnoreThatOfCurrentLoggedUser(): Observable<
+    HttpResponse<any>
+  > {
+    return this.httpClient.get(`${this.host}/api/inventory/drop-down/ignore`, {
+      observe: 'response',
+    });
+  }
 }

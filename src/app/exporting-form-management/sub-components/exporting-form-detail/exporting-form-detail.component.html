@@ -1,0 +1,35 @@
+<div class="tab-nav-wrapper">
+  <nav mat-tab-nav-bar>
+    @for (tab of tabs; track $index) {
+    <a
+      mat-tab-link
+      [active]="selectedIndex === $index"
+      (click)="selectedIndex = $index"
+    >
+      {{ tab.label }}
+    </a>
+    }
+  </nav>
+</div>
+
+<div class="tab-content-wrapper">
+  <ng-container>
+    @switch (selectedIndex) { @case(0){
+    <div>
+      <app-exporting-form-overview
+        [formId]="formId"
+      ></app-exporting-form-overview>
+    </div>
+    } @case (1) {
+    <div>
+      <app-exporting-form-status [formId]="formId"></app-exporting-form-status>
+    </div>
+    } @case (2) {
+    <div>
+      <app-exporting-form-quote-information
+        [formId]="formId"
+      ></app-exporting-form-quote-information>
+    </div>
+    } }
+  </ng-container>
+</div>
