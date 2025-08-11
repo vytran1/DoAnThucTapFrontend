@@ -3,7 +3,9 @@
   <aside class="sidebar">
     <div class="sidebar-header">
       <img [src]="imageUrl" alt="Avatar" class="personal-image" />
-      <p class="sidebar-name">Trần Nguyễn Vỹ</p>
+      <p class="sidebar-name">
+        {{ accountInfo.firstName + " " + accountInfo.lastName }}
+      </p>
     </div>
 
     <nav class="sidebar-menu">

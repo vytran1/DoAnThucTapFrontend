@@ -1,6 +1,9 @@
 @if(isLoading){
 <app-loading></app-loading>
+}@else { @if(!quotePriceInformation.has_quote){
+<div class="pending-box">⏳ Transporter Not Quote</div>
 }@else {
+
 <div class="quote-container">
   <!-- Company Info -->
   <mat-card class="custom-card wide-card">
@@ -46,6 +49,8 @@
   </mat-card>
 
   <!-- Shipping Info -->
+  @if(!quotePriceInformation.reject){
+
   <mat-card class="custom-card wide-card">
     <mat-card-header>
       <mat-card-title>🚚 Shipping Information</mat-card-title>
@@ -99,13 +104,42 @@
 
   <!-- Buttons -->
   <div class="action-buttons">
-    <button mat-raised-button color="primary">
+    <button
+      mat-raised-button
+      color="primary"
+      type="button"
+      (click)="onAcceptShippingPrice()"
+    >
       <mat-icon>check_circle</mat-icon> Accept
     </button>
-    <button mat-raised-button color="warn">
+    <button
+      mat-raised-button
+      color="warn"
+      type="button"
+      (click)="onRejectShippingPrice()"
+    >
       <mat-icon>cancel</mat-icon> Reject
     </button>
   </div>
+  @if(isOpenMessageModal){
+  <app-message-modal
+    [title]="title"
+    [message]="message"
+    (closed)="closeMessageModal()"
+  ></app-message-modal>
+  } }@else {
+  <!-- Đã reject -->
+  <mat-card class="custom-card wide-card reject-card">
+    <mat-card-header>
+      <mat-card-title>❌ Quotation Rejected</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="reject-reason">
+        <strong>Reason:</strong>
+        {{ quotePriceInformation.quote_price_date.reason }}
+      </div>
+    </mat-card-content>
+  </mat-card>
+  }
 </div>
-
-}
+} }

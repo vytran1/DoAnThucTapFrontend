@@ -7,6 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { MessageModalComponent } from '../../../shared-component/message-modal/message-modal.component';
 
 @Component({
   selector: 'app-exporting-form-quote-information',
@@ -17,6 +18,7 @@ import { CommonModule } from '@angular/common';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    MessageModalComponent,
   ],
   templateUrl: './exporting-form-quote-information.component.html',
   styleUrl: './exporting-form-quote-information.component.css',
@@ -27,6 +29,10 @@ export class ExportingFormQuoteInformationComponent
   subscriptions: Subscription[] = [];
   quotePriceInformation!: ExportingFormQuoteInformationAggregator;
   isLoading = true;
+
+  isOpenMessageModal = false;
+  title = '';
+  message = '';
 
   @Input()
   formId!: number;
@@ -53,7 +59,41 @@ export class ExportingFormQuoteInformationComponent
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
 
-  onAcceptShippingPrice() {}
+  onAcceptShippingPrice() {
+    this.subscriptions.push(
+      this.exportingFormServie.updateAcceptPrice(this.formId).subscribe({
+        next: (response) => {
+          this.title = 'RESULT';
+          this.message = 'Accept Price Successfully';
+          this.isOpenMessageModal = true;
+        },
+        error: (err) => {
+          this.title = 'ERROR';
+          this.message = err.error;
+          this.isOpenMessageModal = true;
+        },
+      })
+    );
+  }
 
-  onRejectShippingPrice() {}
+  closeMessageModal() {
+    this.isOpenMessageModal = false;
+  }
+
+  onRejectShippingPrice() {
+    this.subscriptions.push(
+      this.exportingFormServie.updateRejectPrice(this.formId).subscribe({
+        next: (response) => {
+          this.title = 'RESULT';
+          this.message = 'Reject Price Successfully';
+          this.isOpenMessageModal = true;
+        },
+        error: (err) => {
+          this.title = 'ERROR';
+          this.message = err.error;
+          this.isOpenMessageModal = true;
+        },
+      })
+    );
+  }
 }

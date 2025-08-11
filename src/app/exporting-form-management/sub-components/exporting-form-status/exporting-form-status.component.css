@@ -133,3 +133,33 @@
 .timeline-item:not(.latest):hover .timeline-marker-dot {
   background-color: #94a3b8;
 }
+.update-status-container {
+  margin-top: 1.5rem;
+}
+.status-container {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  background-color: #ffffff; /* màu trắng */
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  margin-top: 30px; /* tạo khoảng cách với Status History */
+}
+
+.update-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 6px 12px;
+  background-color: #1976d2; /* xanh dương */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.update-btn:hover {
+  background-color: #1565c0; /* xanh đậm hơn khi hover */
+}

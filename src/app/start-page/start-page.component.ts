@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../services/auth.service';
 import { AccountService } from '../services/account.service';
 import { Subscription } from 'rxjs';
+import { PersonalInformation } from '../model/account/personal-information.model';
 
 @Component({
   selector: 'app-start-page',
@@ -23,6 +24,8 @@ export class StartPageComponent implements OnInit, OnDestroy {
   isAnalysisOpen = false;
   isReportOpen = false;
 
+  accountInfo!: PersonalInformation;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -31,6 +34,12 @@ export class StartPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.id = this.authService.getId();
+
+    this.accountService.getInformationOfCurrentLoggedUser().subscribe({
+      next: (response) => {
+        this.accountInfo = response.body;
+      },
+    });
 
     this.subscriptions.push(
       this.accountService.getImage().subscribe({

@@ -11,4 +11,5 @@ export interface ExportingQuoteInformation {
   price_per_kilometer: number;
   price_per_item: number;
   discount: number;
+  reason: string;
 }

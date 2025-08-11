@@ -42,5 +42,24 @@
       </div>
     </mat-card-content>
   </mat-card>
+  @if(isOpenListStatus){
+  <app-status-list
+    (statusSelected)="onStatusSelected($event)"
+    (cancelled)="onCancelled()"
+    [statusList]="statusOptions"
+  ></app-status-list>
+  } @if(isOpenMessageModal){
+  <app-message-modal
+    [title]="title"
+    [message]="message"
+    (closed)="closeMessageModal()"
+  ></app-message-modal>
+  }
+</div>
+<div class="status-container">
+  <div class="status-bar"></div>
+  <button class="update-btn" type="button" (click)="openListStatus()">
+    Update Status
+  </button>
 </div>
 }

@@ -22,6 +22,46 @@ export class ExportingFormService {
     );
   }
 
+  public updatePayingStatus(formId: number): Observable<HttpResponse<any>> {
+    return this.httpClient.post(
+      `${this.host}/api/exporting_form/${formId}/status/paying`,
+      null,
+      { observe: 'response' }
+    );
+  }
+
+  public updateAcceptPrice(formId: number): Observable<HttpResponse<any>> {
+    return this.httpClient.post(
+      `${this.host}/api/exporting_form/${formId}/status/accept_price`,
+      null,
+      { observe: 'response' }
+    );
+  }
+
+  public updateRejectPrice(formId: number): Observable<HttpResponse<any>> {
+    return this.httpClient.post(
+      `${this.host}/api/exporting_form/${formId}/status/reject_price`,
+      null,
+      { observe: 'response' }
+    );
+  }
+
+  public updateGivingProduct(formId: number): Observable<HttpResponse<any>> {
+    return this.httpClient.post(
+      `${this.host}/api/exporting_form/${formId}/status/giving_product`,
+      null,
+      { observe: 'response' }
+    );
+  }
+
+  public updateFinishStatus(formId: number): Observable<HttpResponse<any>> {
+    return this.httpClient.post(
+      `${this.host}/api/exporting_form/${formId}/status/finish`,
+      null,
+      { observe: 'response' }
+    );
+  }
+
   public getExportingFormOverview(id: number): Observable<HttpResponse<any>> {
     return this.httpClient.get(
       `${this.host}/api/exporting_form/${id}/overview`,
