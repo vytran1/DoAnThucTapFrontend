@@ -6,11 +6,17 @@ import { AuthService } from '../services/auth.service';
 import { AccountService } from '../services/account.service';
 import { Subscription } from 'rxjs';
 import { PersonalInformation } from '../model/account/personal-information.model';
+import { LoadingComponent } from '../shared-component/loading/loading.component';
 
 @Component({
   selector: 'app-start-page',
   standalone: true,
-  imports: [RouterModule, WarningModalComponent, CommonModule],
+  imports: [
+    RouterModule,
+    WarningModalComponent,
+    CommonModule,
+    LoadingComponent,
+  ],
   templateUrl: './start-page.component.html',
   styleUrl: './start-page.component.css',
 })
@@ -23,6 +29,7 @@ export class StartPageComponent implements OnInit, OnDestroy {
   id: any;
   isAnalysisOpen = false;
   isReportOpen = false;
+  isLoading = true;
 
   accountInfo!: PersonalInformation;
 
@@ -37,6 +44,7 @@ export class StartPageComponent implements OnInit, OnDestroy {
 
     this.accountService.getInformationOfCurrentLoggedUser().subscribe({
       next: (response) => {
+        console.log('Personal Information', response);
         this.accountInfo = response.body;
       },
     });
@@ -59,6 +67,8 @@ export class StartPageComponent implements OnInit, OnDestroy {
         }
       })
     );
+
+    this.isLoading = false;
   }
 
   ngOnDestroy(): void {

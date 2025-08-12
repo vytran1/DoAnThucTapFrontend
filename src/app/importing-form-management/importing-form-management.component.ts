@@ -38,7 +38,7 @@ export class ImportingFormManagementComponent implements OnInit, OnDestroy {
   form!: FormGroup;
 
   pageNum = 1;
-  pageSize = 2;
+  pageSize = 10;
   sortField = 'id';
   sortDir = 'asc';
   totalPage = 0;

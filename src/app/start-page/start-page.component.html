@@ -1,10 +1,15 @@
 <div class="layout">
+  @if(isLoading){
+  <app-loading></app-loading>
+  }@else {
   <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-header">
       <img [src]="imageUrl" alt="Avatar" class="personal-image" />
       <p class="sidebar-name">
-        {{ accountInfo.firstName + " " + accountInfo.lastName }}
+        {{
+          (accountInfo?.firstName || "") + " " + (accountInfo?.lastName || "")
+        }}
       </p>
     </div>
 
@@ -85,6 +90,7 @@
       </ul>
     </nav>
   </aside>
+  }
 
   <!-- Main content -->
   <div class="main-content">

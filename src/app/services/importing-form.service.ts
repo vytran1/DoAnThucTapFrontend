@@ -14,7 +14,7 @@ export class ImportingFormService {
   importingForm$ = this.importingFormsSubject.asObservable();
 
   private pageNumSubject = new BehaviorSubject<number>(1);
-  private pageSizeSubject = new BehaviorSubject<number>(2);
+  private pageSizeSubject = new BehaviorSubject<number>(10);
   private sortFieldSubject = new BehaviorSubject<string>('id');
   private sortDirSubject = new BehaviorSubject<string>('asc');
   private totalPageSubject = new BehaviorSubject<number>(0);

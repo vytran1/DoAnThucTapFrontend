@@ -38,7 +38,7 @@ export class InventoryOrderManagementComponent implements OnInit, OnDestroy {
   orders: OrderPage[] = [];
 
   pageNum = 1;
-  pageSize = 2;
+  pageSize = 10;
   sortField = 'id';
   sortDir = 'asc';
   totalPage = 0;

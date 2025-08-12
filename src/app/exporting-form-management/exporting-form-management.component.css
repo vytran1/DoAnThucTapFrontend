@@ -1,0 +1,38 @@
+.container {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Filter bar */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Date fields grow to fill space */
+.date-fields {
+  display: flex;
+  flex-grow: 1;
+  gap: 16px;
+}
+
+/* Form field expands full width */
+.date-fields mat-form-field {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* Button section fixed size */
+.button-group {
+  display: flex;
+  gap: 12px;
+}

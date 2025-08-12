@@ -1,4 +1,126 @@
-<p>exporting-form-management works!</p>
-<button type="button" (click)="redirectoExportingFormCreatePage()">
-  Create Exporting Form
-</button>
+<div class="container">
+  <!-- Filter Section -->
+  <div class="filter-bar" [formGroup]="form">
+    <div class="date-fields">
+      <mat-form-field appearance="fill">
+        <mat-label>From Date</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="startDate" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker1"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>To Date</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="endDate" />
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="picker2"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="button-group">
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="applyFilter()"
+        [disabled]="form.invalid"
+      >
+        Apply Filter
+      </button>
+
+      <button
+        mat-flat-button
+        color="accent"
+        (click)="redirectoExportingFormCreatePage()"
+      >
+        Create Order
+      </button>
+    </div>
+  </div>
+
+  <!-- Error nếu chọn ngày không hợp lệ -->
+  <mat-error *ngIf="form.errors?.['dateRangeInvalid']" style="margin: 0 16px">
+    From Date must be before To Date
+  </mat-error>
+
+  <!-- Table Section -->
+  <div class="table-section">
+    <table
+      mat-table
+      [dataSource]="exportingForms"
+      class="mat-elevation-z8 full-width-table"
+    >
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef>REFERENCE NO</th>
+        <td mat-cell *matCellDef="let exportingform">
+          <a [routerLink]="['/inventory/exporting-form/', exportingform.id]">
+            {{ exportingform.exporting_form_code }}
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="move_from_inventory_code">
+        <th mat-header-cell *matHeaderCellDef>Source Inventory</th>
+        <td mat-cell *matCellDef="let exportingform">
+          {{ exportingform.move_from_inventory_code }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="move_to_inventory_code">
+        <th mat-header-cell *matHeaderCellDef>Destination Inventory</th>
+        <td mat-cell *matCellDef="let exportingform">
+          {{ exportingform.move_to_inventory_code }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let exportingform">
+          {{ exportingform.status }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="total_quantity">
+        <th mat-header-cell *matHeaderCellDef>Total Quantity</th>
+        <td mat-cell *matCellDef="let exportingform">
+          {{ exportingform.total_quantity }}
+        </td>
+      </ng-container>
+
+      <tr
+        mat-header-row
+        *matHeaderRowDef="[
+          'code',
+          'move_from_inventory_code',
+          'move_to_inventory_code',
+          'status',
+          'total_quantity'
+        ]"
+      ></tr>
+      <tr
+        mat-row
+        *matRowDef="
+          let row;
+          columns: [
+            'code',
+            'move_from_inventory_code',
+            'move_to_inventory_code',
+            'status',
+            'total_quantity'
+          ]
+        "
+      ></tr>
+    </table>
+    <app-page-num
+      [currentPage]="pageNum"
+      [pageSize]="pageSize"
+      [totalItems]="totalItems"
+      (pageChange)="onPageChange($event)"
+    ></app-page-num>
+  </div>
+</div>
